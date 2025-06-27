@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filosofía | Manual Interactivo</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Pastel Gradient Theme */
+            --bg-gradient-start: #e9defa;
+            --bg-gradient-end: #d1eaff;
+            --text-main: #34495e;
+            --text-secondary: #7f8c8d;
+            --primary-color: #ff7e67; /* Soft Coral */
+            --secondary-color: #78e08f; /* Mint Green */
+            --card-bg: rgba(255, 255, 255, 0.6);
+            --card-border: rgba(255, 255, 255, 0.2);
+            --error-color: #e74c3c; /* Soft Red */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to bottom, var(--bg-gradient-start), var(--bg-gradient-end));
+            color: var(--text-main);
+            min-height: 100vh;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            border: 1px solid var(--card-border);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.15);
+        }
+        
+        #typewriter-text {
+            border-right: .15em solid var(--primary-color);
+            animation: blink-caret .75s step-end infinite;
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary-color); }
+        }
+
+        .section-title-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 9999px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        
+        /* Quiz Styles - Improved */
+        .quiz-option {
+            transition: all 0.2s ease-in-out; cursor: pointer;
+            border: 2px solid transparent;
+            background-color: var(--card-bg);
+        }
+        .quiz-option:hover:not(.answered) { 
+            transform: scale(1.02); 
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        .quiz-option.correct { 
+            background-color: white;
+            border-color: var(--secondary-color);
+        }
+        .quiz-option.incorrect { 
+            background-color: white;
+            border-color: var(--error-color);
+        }
+
+        .quiz-button {
+             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+             background-color: var(--primary-color);
+             color: white;
+             transition: all 0.3s;
+        }
+        .quiz-button:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transform: scale(1.02);
+        }
+
+        #modal-container { transition: opacity 0.3s ease-in-out; }
+        #modal-content {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            background-color: white; backdrop-filter: none; -webkit-backdrop-filter: none;
+        }
+
+        .text-primary { color: var(--primary-color); }
+        .text-secondary { color: var(--text-secondary); }
+        .hover\:text-primary:hover { color: var(--primary-color); }
+    </style>
+</head>
+<body>
+
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[rgba(255,255,255,0.3)] backdrop-blur-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold">
+                <span class="text-primary">Filosofía</span>
+                <span> Interactiva</span>
+            </div>
+            <div class="hidden md:flex flex-wrap space-x-3 lg:space-x-4 items-center text-sm lg:text-base">
+                <a href="#unidad-relativismo" class="hover:text-primary transition">Relativismo</a>
+                <a href="#unidad-socrates" class="hover:text-primary transition">Sócrates</a>
+                <a href="#unidad-platon" class="hover:text-primary transition">Platón</a>
+                <a href="#unidad-aristoteles" class="hover:text-primary transition">Aristóteles</a>
+                <a href="#unidad-moro" class="hover:text-primary transition">T. Moro</a>
+                <a href="#unidad-hobbes" class="hover:text-primary transition">Hobbes</a>
+                <a href="#unidad-kant" class="hover:text-primary transition">Kant</a>
+                <a href="#unidad-comparativa" class="hover:text-primary transition">Comparativa</a>
+                <a href="#evaluacion" class="hover:text-primary transition">Evaluación</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="min-h-screen flex items-center justify-center text-center px-4">
+            <div class="max-w-4xl">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
+                    <span class="text-primary">Un Viaje</span> al Corazón del Pensamiento.
+                </h1>
+                <div class="typewriter-wrapper mx-auto mt-6">
+                    <p id="typewriter-text" class="text-lg md:text-xl text-secondary leading-relaxed"></p>
+                </div>
+                <a href="#unidad-relativismo" class="mt-12 inline-block bg-primary text-white font-bold py-3 px-8 rounded-full text-lg hover:opacity-90 transition-transform duration-300 hover:scale-105">
+                    Iniciar Exploración
+                </a>
+            </div>
+        </section>
+
+        <!-- UNIDAD 1: Relativismo y Sofistas -->
+        <section id="unidad-relativismo" class="py-20 px-4 container mx-auto">
+            <div class="text-center mb-16">
+                 <span class="section-title-badge reveal">Tema 1</span>
+                <h2 class="text-3xl md:text-5xl font-bold reveal">Relativismo y los Sofistas</h2>
+                <p class="text-lg text-secondary mt-4 max-w-3xl mx-auto reveal">¿Existen verdades absolutas? La pregunta que inició un debate milenario.</p>
+            </div>
+            <div class="card p-8 reveal mb-12">
+                <h3 class="text-2xl font-bold mb-3 text-primary">¿Qué es el Relativismo?</h3>
+                <p class="text-secondary">Es una postura filosófica que sostiene que no existen verdades absolutas. Según esta visión, lo que es verdadero, bueno o correcto depende del contexto, como la cultura, la sociedad, el individuo o la época histórica. Su principal crítico es el absolutismo, que defiende la existencia de verdades universales.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <div class="card p-6 reveal">
+                    <h4 class="text-xl font-bold mb-2">Cognitivo o Epistémico</h4>
+                    <p class="text-secondary">Afirma que el conocimiento y la verdad son relativos al marco cultural o personal. "Lo que una cultura considera ciencia puede no serlo para otra."</p>
+                </div>
+                <div class="card p-6 reveal">
+                    <h4 class="text-xl font-bold mb-2">Moral</h4>
+                    <p class="text-secondary">Sostiene que los valores y normas morales varían según la sociedad o el individuo. "Una acción puede ser moralmente aceptable en una cultura y condenada en otra."</p>
+                </div>
+                 <div class="card p-6 reveal lg:col-span-1 md:col-span-2">
+                    <h4 class="text-xl font-bold mb-2">Cultural</h4>
+                    <p class="text-secondary">Cada cultura tiene su propia manera válida de entender el mundo, sin que una sea superior a otra.</p>
+                </div>
+            </div>
+             <div class="card p-8 reveal mb-12">
+                <h3 class="text-2xl font-bold mb-3 text-primary">Los Sofistas: Maestros de la Persuasión</h3>
+                <p class="text-secondary mb-4">Fueron un grupo de pensadores en la antigua Grecia (s. V a.C.) que enseñaban retórica y filosofía práctica por dinero. Creían que, si no hay una verdad absoluta, lo importante es la capacidad de <span class="font-bold text-text-main">convencer y persuadir</span> en los debates públicos.</p>
+                <blockquote class="text-center italic text-lg my-4">"El hombre es la medida de todas las cosas." - Protágoras</blockquote>
+                <p class="text-secondary">Esta famosa frase resume su postura: cada persona tiene su propia verdad.</p>
+             </div>
+             <!-- New Euphemism Section -->
+             <div class="card p-8 reveal">
+                <h3 class="text-2xl font-bold mb-4 text-primary text-center">El Poder del Lenguaje: Eufemismo vs. Disfemismo</h3>
+                <div class="grid md:grid-cols-2 gap-8 text-left">
+                    <div class="border-r-0 md:border-r md:border-gray-400/30 pr-0 md:pr-8">
+                        <h4 class="text-xl font-bold mb-2">Eufemismo</h4>
+                        <p class="text-secondary mb-3">Expresión suave o decorosa usada para reemplazar una palabra que se considera demasiado dura, directa o desagradable.</p>
+                        <p class="text-sm font-bold">Objetivo: Suavizar la realidad.</p>
+                        <ul class="list-disc list-inside text-secondary text-sm mt-2 space-y-1">
+                            <li>"Reajuste de personal" en lugar de "despidos".</li>
+                            <li>"Daños colaterales" en lugar de "víctimas civiles".</li>
+                            <li>"Pasar a mejor vida" en lugar de "morir".</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="text-xl font-bold mb-2">Disfemismo</h4>
+                        <p class="text-secondary mb-3">Palabra o expresión deliberadamente peyorativa o negativa que se usa en lugar de una neutral o positiva.</p>
+                        <p class="text-sm font-bold">Objetivo: Degradar o endurecer la realidad.</p>
+                        <ul class="list-disc list-inside text-secondary text-sm mt-2 space-y-1">
+                             <li>"Comida chatarra" en lugar de "comida rápida".</li>
+                             <li>"Matasanos" en lugar de "médico".</li>
+                             <li>"Caja tonta" en lugar de "televisión".</li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="text-secondary text-center mt-6 text-sm">Para los sofistas, dominar estas herramientas era esencial para la <span class="font-bold">retórica</span> y para ganar debates, demostrando que la forma en que se nombra algo puede cambiar por completo su percepción.</p>
+            </div>
+        </section>
+
+        <!-- UNIDAD 2: Sócrates -->
+        <section id="unidad-socrates" class="py-20 px-4 bg-[rgba(255,255,255,0.1)]">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <span class="section-title-badge reveal">Tema 2</span>
+                    <h2 class="text-3xl md:text-5xl font-bold reveal">Sócrates y la Búsqueda de la Verdad</h2>
+                    <p class="text-lg text-secondary mt-4 max-w-3xl mx-auto reveal">El filósofo que revolucionó el pensamiento al centrarse en la ética y el autoconocimiento.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div class="card p-8 reveal">
+                        <h3 class="text-2xl font-bold mb-4 text-primary">El Método Socrático</h3>
+                         <blockquote class="italic text-lg mb-4">"Solo sé que no sé nada."</blockquote>
+                         <p class="text-secondary mb-4">Sócrates admitía su ignorancia para poder iniciar una búsqueda genuina del conocimiento. Su método, la <span class="font-bold text-text-main">mayéutica</span>, consistía en un diálogo de preguntas y respuestas para ayudar a su interlocutor a "dar a luz" la verdad que llevaba dentro.</p>
+                         <p class="text-secondary">Creía firmemente que <span class="font-bold text-text-main">el conocimiento conduce a la virtud</span>: si una persona realmente conoce el bien, actuará bien. El mal, para él, era producto de la ignorancia.</p>
+                    </div>
+                     <div class="card p-6 reveal">
+                        <h3 class="text-xl font-bold mb-4 text-center">Sócrates vs. Sofistas</h3>
+                        <table class="w-full text-left text-sm">
+                            <thead>
+                                <tr class="border-b border-gray-400/50">
+                                    <th class="p-2">Tema</th><th class="p-2 text-primary">Sócrates</th><th class="p-2">Sofistas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-400/20"><td class="p-2 font-bold">Verdad</td><td class="p-2">Universal, se puede encontrar</td><td class="p-2">Relativa, depende de cada uno</td></tr>
+                                <tr class="border-b border-gray-400/20"><td class="p-2 font-bold">Método</td><td class="p-2">Diálogo (mayéutica)</td><td class="p-2">Retórica, persuasión</td></tr>
+                                <tr class="border-b border-gray-400/20"><td class="p-2 font-bold">Interés</td><td class="p-2">Ética, justicia, virtud</td><td class="p-2">Éxito, poder</td></tr>
+                                <tr><td class="p-2 font-bold">Enseñanza</td><td class="p-2">Gratuita, busca formar el alma</td><td class="p-2">Cobraban, enseñaban a triunfar</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UNIDAD 3: Platón -->
+        <section id="unidad-platon" class="py-20 px-4 container mx-auto">
+             <div class="text-center mb-16">
+                <span class="section-title-badge reveal">Tema 3</span>
+                <h2 class="text-3xl md:text-5xl font-bold reveal">Platón y el Mundo de las Ideas</h2>
+                <p class="text-lg text-secondary mt-4 max-w-3xl mx-auto reveal">La existencia de una realidad perfecta más allá de nuestros sentidos.</p>
+            </div>
+            <div class="max-w-4xl mx-auto card p-8 reveal mb-16">
+                <h3 class="text-2xl font-bold mb-3 text-center text-primary">La Alegoría de la Caverna</h3>
+                <p class="text-secondary text-center">Platón describe a personas encadenadas viendo sombras en una caverna, creyendo que esa es la realidad. Solo el filósofo que se libera y sale a la luz del sol puede conocer la verdad. Esta alegoría enseña que el conocimiento verdadero no viene de los sentidos (sombras), sino del pensamiento filosófico (luz).</p>
+            </div>
+            <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+                 <div class="reveal">
+                     <h3 class="text-2xl font-bold mb-4">Teoría de los Dos Mundos</h3>
+                     <p class="mb-4">Para Platón, existen dos realidades. El <span class="font-bold text-text-main">Mundo Sensible</span> es el que percibimos, un mundo imperfecto y cambiante. El <span class="font-bold text-primary">Mundo de las Ideas</span> es una realidad perfecta, eterna e inmutable, donde residen las esencias verdaderas de las cosas (la Belleza, la Justicia, el Bien).</p>
+                 </div>
+                 <div class="card p-6 reveal">
+                    <h4 class="font-bold text-center mb-4">Dualismo Cuerpo-Alma</h4>
+                    <p class="text-secondary">El ser humano está compuesto por un <span class="font-bold text-text-main">cuerpo</span> mortal y un <span class="font-bold text-primary">alma</span> inmortal y racional, que pertenece al Mundo de las Ideas. Aprender, para Platón, es en realidad "recordar" (reminiscencia) lo que el alma ya sabía.</p>
+                 </div>
+            </div>
+        </section>
+
+        <!-- UNIDAD 4: Aristóteles (Expanded) -->
+        <section id="unidad-aristoteles" class="py-20 px-4 bg-[rgba(255,255,255,0.1)]">
+            <div class="container mx-auto">
+                 <div class="text-center mb-16">
+                    <span class="section-title-badge reveal">Tema 4</span>
+                    <h2 class="text-3xl md:text-5xl font-bold reveal">Aristóteles y el Mundo Real</h2>
+                    <p class="text-lg text-secondary mt-4 max-w-3xl mx-auto reveal">El conocimiento a través de la experiencia y la observación de la naturaleza.</p>
+                </div>
+                <div class="card p-8 reveal mb-12">
+                     <h3 class="text-2xl font-bold mb-3 text-primary">Teoría Hilemórfica (Materia y Forma)</h3>
+                     <p class="text-secondary">Aristóteles rechazó la idea de dos mundos de Platón. Para él, la única realidad está aquí, en el mundo sensible. Todo lo que existe (la <span class="font-bold text-text-main">sustancia</span>) está compuesto de <span class="font-bold text-text-main">materia</span> (de qué está hecho) y <span class="font-bold text-text-main">forma</span> (lo que lo hace ser lo que es y no otra cosa).</p>
+                </div>
+                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                    <div class="card p-4 text-center reveal"><h4 class="font-bold">Causa Material</h4><p class="text-sm text-secondary">¿De qué está hecha?</p></div>
+                    <div class="card p-4 text-center reveal"><h4 class="font-bold">Causa Formal</h4><p class="text-sm text-secondary">¿Qué forma tiene?</p></div>
+                    <div class="card p-4 text-center reveal"><h4 class="font-bold">Causa Eficiente</h4><p class="text-sm text-secondary">¿Quién la hizo?</p></div>
+                    <div class="card p-4 text-center reveal"><h4 class="font-bold">Causa Final</h4><p class="text-sm text-secondary">¿Para qué se hizo?</p></div>
+                 </div>
+                 <div class="max-w-4xl mx-auto card p-8 reveal">
+                    <h3 class="text-2xl font-bold mb-3 text-primary text-center">Metafísica vs. Posturas Ametafísicas</h3>
+                    <p class="text-secondary text-center mb-6">La metafísica aristotélica busca entender el "ser en cuanto ser". Sin embargo, otras corrientes filosóficas, como el positivismo, rechazan este enfoque.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4 text-left">
+                        <div>
+                            <h4 class="font-bold text-text-main mb-2">Ejemplos de Preguntas Metafísicas:</h4>
+                            <ul class="list-disc list-inside text-secondary text-sm space-y-1">
+                                <li>¿Qué es la existencia?</li>
+                                <li>¿El alma es inmortal?</li>
+                                <li>¿Tenemos libre albedrío?</li>
+                                <li>¿Cuál es la naturaleza del tiempo?</li>
+                                <li>¿Existe una causa primera para todo (Dios)?</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-text-main mb-2">Ejemplos de Enfoques Ametafísicos:</h4>
+                             <ul class="list-disc list-inside text-secondary text-sm space-y-1">
+                                <li>(Ciencia) La fórmula del agua es H₂O.</li>
+                                <li>(Física) Medir la velocidad de un objeto.</li>
+                                <li>(Lingüística) Analizar la sintaxis de una oración.</li>
+                                <li>(Economía) Calcular la rentabilidad de una inversión.</li>
+                                <li>(Positivismo) Solo es válido lo observable y medible.</li>
+                            </ul>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- UNIDAD 5: Pensadores Modernos -->
+        <section id="unidad-moro" class="py-20 px-4 container mx-auto">
+            <div class="text-center mb-16">
+                <span class="section-title-badge reveal">Tema 5</span>
+                <h2 class="text-3xl md:text-5xl font-bold reveal">Tomás Moro y la Utopía</h2>
+                <p class="text-lg text-secondary mt-4 max-w-3xl mx-auto reveal">La crítica a una sociedad injusta a través de la imaginación de un mundo perfecto.</p>
+            </div>
+            <div class="card p-8 reveal mb-12 max-w-4xl mx-auto">
+                <h3 class="text-2xl font-bold mb-3 text-primary text-center">El Humanista y su Obra</h3>
+                <p class="text-secondary text-center">Tomás Moro (1478-1535), humanista y Lord Canciller de Inglaterra, utilizó su obra maestra "Utopía" (1516) para proponer una profunda crítica filosófica. Al describir una isla ideal, contrastaba sus valores de comunidad y justicia con la desigualdad, corrupción y ambición de la Europa de su tiempo.</p>
+            </div>
+
+            <h3 class="text-2xl md:text-3xl text-center font-bold mb-10 reveal">Conceptos Clave de Utopía</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card p-6 reveal">
+                    <h4 class="text-xl font-bold mb-3"><span class="text-2xl mr-2">⚖️</span>Propiedad Común</h4>
+                    <p class="text-secondary">En Utopía no existe la propiedad privada: todo es de todos. Moro cree que la avaricia y los conflictos nacen del afán de poseer.</p>
+                </div>
+                <div class="card p-6 reveal">
+                    <h4 class="text-xl font-bold mb-3"><span class="text-2xl mr-2">🏛️</span>Organización Política</h4>
+                    <p class="text-secondary">La isla se divide en ciudades gobernadas por funcionarios elegidos, en un sistema casi republicano y meritocrático.</p>
+                </div>
+                <div class="card p-6 reveal">
+                    <h4 class="text-xl font-bold mb-3"><span class="text-2xl mr-2">🧰</span>Trabajo y Economía</h4>
+                    <p class="text-secondary">Todos trabajan, pero solo seis horas al día. No hay desempleo ni pobreza, y se evita el lujo innecesario.</p>
+                </div>
+                <div class="card p-6 reveal">
+                    <h4 class="text-xl font-bold mb-3"><span class="text-2xl mr-2">🧠</span>Educación y Filosofía</h4>
+                    <p class="text-secondary">La educación es universal y permanente. Se valoran la razón y la virtud por encima de lo material.</p>
+                </div>
+                <div class="card p-6 reveal">
+                    <h4 class="text-xl font-bold mb-3"><span class="text-2xl mr-2">🛡️</span>Guerra y Diplomacia</h4>
+                    <p class="text-secondary">Utopía evita la guerra siempre que puede, prefiriendo usar la inteligencia antes que la violencia.</p>
+                </div>
+                <div class="card p-6 reveal">
+                    <h4 class="text-xl font-bold mb-3"><span class="text-2xl mr-2">⚠️</span>Crítica Indirecta</h4>
+                    <p class="text-secondary">Moro no propone copiar Utopía literalmente, sino usarla como un espejo para reflexionar sobre los males de su propio mundo.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="unidad-hobbes" class="py-20 px-4 bg-[rgba(255,255,255,0.1)]">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <span class="section-title-badge reveal">Tema 6</span>
+                    <h2 class="text-3xl md:text-5xl font-bold reveal">Thomas Hobbes y el Leviatán</h2>
+                </div>
+                <div class="card p-8 reveal mb-12 max-w-4xl mx-auto">
+                    <h3 class="text-2xl font-bold mb-3 text-primary text-center">El Estado de Naturaleza</h3>
+                    <p class="text-secondary text-center mb-4">Hobbes (1588–1679) tenía una visión pesimista del ser humano en su estado natural (sin gobierno). Creía que somos egoístas y violentos, viviendo en una "guerra de todos contra todos".</p>
+                    <blockquote class="text-center italic text-lg my-4 text-text-main">“El hombre es el lobo del hombre.”</blockquote>
+                    <p class="text-secondary text-center">En este estado, la vida sería <span class="font-bold text-text-main">"solitaria, pobre, desagradable, brutal y corta".</span></p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="card p-8 reveal">
+                         <h3 class="text-2xl font-bold mb-3 text-primary">🤝 El Contrato Social</h3>
+                         <p class="text-secondary">Para escapar de este caos, las personas realizan un pacto: ceden parte de su libertad a un poder central a cambio de orden y seguridad. Es un acto racional para preservar la vida.</p>
+                    </div>
+                    <div class="card p-8 reveal">
+                         <h3 class="text-2xl font-bold mb-3 text-primary">👑 El Leviatán</h3>
+                         <p class="text-secondary">Es la metáfora del Estado soberano absoluto. Este poder centralizado, sea un rey o una asamblea, tiene autoridad total para imponer la ley y evitar el regreso al estado de naturaleza. Para Hobbes, la libertad sin seguridad es una amenaza.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="unidad-kant" class="py-20 px-4 container mx-auto">
+             <div class="text-center mb-16">
+                <span class="section-title-badge reveal">Tema 7</span>
+                <h2 class="text-3xl md:text-5xl font-bold reveal">Kant y la Razón Crítica</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 items-start mb-16">
+                <div class="card p-8 reveal">
+                    <h3 class="text-2xl font-bold mb-3 text-primary">La Revolución Copernicana</h3>
+                    <p class="text-secondary">Kant (1724–1804) revoluciona la filosofía al poner al <span class="font-bold text-text-main">sujeto</span> en el centro del conocimiento. No conocemos el mundo tal como es en sí mismo (el <span class="font-bold">Noúmeno</span>), sino como nuestra mente lo organiza a través de estructuras innatas (el <span class="font-bold">Fenómeno</span>).</p>
+                </div>
+                <div class="card p-8 reveal">
+                    <h3 class="text-2xl font-bold mb-3 text-primary">Ética del Deber</h3>
+                    <p class="text-secondary">La moralidad de un acto no reside en sus consecuencias, sino en la <span class="font-bold text-text-main">intención</span> con la que se realiza. Actuamos moralmente cuando lo hacemos por respeto al deber, guiados por el <span class="font-bold">Imperativo Categórico</span>: obra de tal manera que tu acción pueda convertirse en una ley universal para todos.</p>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                 <div class="card p-4 text-center reveal"><h4 class="font-bold">A Priori vs. A Posteriori</h4><p class="text-sm text-secondary">El conocimiento <span class="font-bold">'a priori'</span> es universal y no depende de la experiencia (ej: 2+2=4). El <span class="font-bold">'a posteriori'</span> deriva de la experiencia (ej: el fuego quema).</p></div>
+                 <div class="card p-4 text-center reveal"><h4 class="font-bold">Fenómeno vs. Noúmeno</h4><p class="text-sm text-secondary">El <span class="font-bold">Fenómeno</span> es la realidad como la percibimos y podemos conocer. El <span class="font-bold">Noúmeno</span> es la 'cosa en sí', la realidad tal cual es, pero incognoscible para nosotros.</p></div>
+                 <div class="card p-4 text-center reveal"><h4 class="font-bold">Síntesis Filosófica</h4><p class="text-sm text-secondary">Kant une el Racionalismo (la razón estructura) y el Empirismo (la experiencia aporta el contenido) para explicar el conocimiento.</p></div>
+                 <div class="card p-4 text-center reveal"><h4 class="font-bold">Autonomía Moral</h4><p class="text-sm text-secondary">El ser humano es libre y racional, y por eso puede darse sus propias leyes morales universales sin depender de una autoridad externa.</p></div>
+            </div>
+        </section>
+
+        <!-- Comparative Chart Section -->
+        <section id="unidad-comparativa" class="py-20 px-4 bg-[rgba(255,255,255,0.1)]">
+            <div class="container mx-auto">
+                <div class="text-center mb-16">
+                    <span class="section-title-badge reveal">Tema 8</span>
+                    <h2 class="text-3xl md:text-5xl font-bold reveal">Cuadro Comparativo de Filósofos</h2>
+                    <p class="text-lg text-secondary mt-4 max-w-3xl mx-auto reveal">Un vistazo rápido a las ideas centrales que contrastan a estos grandes pensadores.</p>
+                </div>
+                <div class="card p-6 reveal overflow-x-auto">
+                    <table class="w-full text-left text-sm whitespace-nowrap">
+                        <thead class="text-primary">
+                            <tr class="border-b-2 border-primary/50">
+                                <th class="p-4 font-bold">Autor</th>
+                                <th class="p-4 font-bold">Método / Enfoque</th>
+                                <th class="p-4 font-bold">Realidad y Conocimiento</th>
+                                <th class="p-4 font-bold">Ética</th>
+                                <th class="p-4 font-bold">Política y Sociedad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-400/20">
+                                <td class="p-4 font-bold">Sócrates</td>
+                                <td class="p-4">Diálogo (Mayéutica)</td>
+                                <td class="p-4">La verdad universal está en nuestro interior.</td>
+                                <td class="p-4">La virtud es conocimiento.</td>
+                                <td class="p-4">Cuestiona la democracia ateniense.</td>
+                            </tr>
+                            <tr class="border-b border-gray-400/20">
+                                <td class="p-4 font-bold">Platón</td>
+                                <td class="p-4">Diálogo filosófico, Razón</td>
+                                <td class="p-4">Dos mundos: Sensible (apariencia) e Ideas (realidad).</td>
+                                <td class="p-4">El alma racional debe gobernar el cuerpo.</td>
+                                <td class="p-4">Gobierno ideal del Filósofo-Rey.</td>
+                            </tr>
+                            <tr class="border-b border-gray-400/20">
+                                <td class="p-4 font-bold">Aristóteles</td>
+                                <td class="p-4">Observación, Lógica</td>
+                                <td class="p-4">La realidad está en el mundo sensible (Hilemorfismo).</td>
+                                <td class="p-4">La virtud es el justo medio.</td>
+                                <td class="p-4">El hombre es un "animal político".</td>
+                            </tr>
+                            <tr class="border-b border-gray-400/20">
+                                <td class="p-4 font-bold">T. Moro</td>
+                                <td class="p-4">Crítica social a través de la ficción</td>
+                                <td class="p-4">La razón puede diseñar una sociedad mejor.</td>
+                                <td class="p-4">La ética comunal por sobre el individuo.</td>
+                                <td class="p-4">Utopía sin propiedad privada.</td>
+                            </tr>
+                             <tr class="border-b border-gray-400/20">
+                                <td class="p-4 font-bold">Hobbes</td>
+                                <td class="p-4">Racionalismo materialista</td>
+                                <td class="p-4">El conocimiento nace de la experiencia sensible.</td>
+                                <td class="p-4">La ley del más fuerte en estado natural.</td>
+                                <td class="p-4">Contrato social para crear un Estado absoluto (Leviatán).</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 font-bold">Kant</td>
+                                <td class="p-4">Crítica de la Razón</td>
+                                <td class="p-4">El sujeto construye el conocimiento (Fenómeno).</td>
+                                <td class="p-4">Ética del deber (Imperativo Categórico).</td>
+                                <td class="p-4">Estado basado en leyes universales y la razón.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        <section id="evaluacion" class="py-20 px-4 bg-[rgba(255,255,255,0.1)]">
+            <div class="container mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-5xl font-bold reveal">Pon a Prueba tu Comprensión General</h2>
+                </div>
+                <div id="quiz-container" class="max-w-3xl mx-auto"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-12 text-center text-sm text-secondary space-y-2">
+        <p class="text-xs">© 2025 Alan Maillet. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const typewriterElement = document.getElementById('typewriter-text');
+            if (typewriterElement) {
+                const textToType = "Un viaje por las ideas que dieron forma a nuestro mundo.";
+                let i = 0;
+                function typeWriter() {
+                    if (i < textToType.length) {
+                        typewriterElement.innerHTML += textToType.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 40);
+                    }
+                }
+                typeWriter();
+            }
+
+            gsap.registerPlugin(ScrollTrigger);
+            const reveals = gsap.utils.toArray('.reveal');
+            reveals.forEach(reveal => {
+                gsap.fromTo(reveal, 
+                    { opacity: 0, y: 50 },
+                    {
+                        opacity: 1, y: 0, stagger: 0.2, duration: 1,
+                        scrollTrigger: { trigger: reveal, start: 'top 85%', toggleActions: 'play none none none' }
+                    }
+                );
+            });
+            
+            const fullQuizData = [
+                // Relativismo y Sofistas
+                { question: "¿Qué sostiene el relativismo?", options: ["Existen verdades universales.", "La verdad depende del contexto.", "La ciencia es la única verdad.", "La moral es igual en todos lados."], correct: 1, rationale: "Correcto. El relativismo postula que la verdad no es absoluta, sino que depende del contexto cultural o individual." },
+                { question: "La frase 'El hombre es la medida de todas las cosas' pertenece a:", options: ["Sócrates", "Platón", "Protágoras", "Aristóteles"], correct: 2, rationale: "Correcto. Es la famosa máxima del sofista Protágoras, resumiendo la idea del relativismo." },
+                { question: "¿Cuál era el principal interés de los Sofistas?", options: ["La búsqueda de la verdad ética.", "El estudio de la naturaleza.", "La enseñanza de la retórica para persuadir.", "La fundación de escuelas gratuitas."], correct: 2, rationale: "Correcto. Se enfocaban en enseñar el arte de la persuasión para tener éxito en la vida pública." },
+
+                // Sócrates
+                { question: "¿Qué significa la frase socrática 'Solo sé que no sé nada'?", options: ["Una declaración de pesimismo.", "El reconocimiento de la propia ignorancia como punto de partida para aprender.", "Una crítica a los dioses.", "Que el conocimiento es imposible."], correct: 1, rationale: "Correcto. Es un acto de humildad intelectual para iniciar la búsqueda de la verdad." },
+                { question: "El método de Sócrates, basado en el diálogo y las preguntas, se llama:", options: ["Mayéutica", "Dialéctica", "Lógica", "Retórica"], correct: 0, rationale: "Correcto. La mayéutica es el arte de 'dar a luz' las ideas a través de preguntas." },
+                { question: "Según Sócrates, ¿por qué la gente actúa mal?", options: ["Porque son malvados por naturaleza.", "Por la influencia de los dioses.", "Por ignorancia.", "Por conveniencia económica."], correct: 2, rationale: "Correcto. Sócrates creía que quien conoce el verdadero bien, lo hace. El mal es producto de la ignorancia." },
+
+                // Platón
+                { question: "¿Qué representa la 'caverna' en la alegoría de Platón?", options: ["El mundo de las Ideas.", "El mundo sensible, lleno de apariencias y engaños.", "Una escuela filosófica.", "La ciudad de Atenas."], correct: 1, rationale: "Correcto. La caverna simboliza el mundo físico que percibimos con los sentidos, que para Platón es solo un reflejo imperfecto." },
+                { question: "Según la Teoría de las Ideas de Platón, ¿dónde se encuentra la verdadera realidad?", options: ["En la naturaleza.", "En el Mundo Sensible.", "En el Mundo de las Ideas o Formas.", "En los libros."], correct: 2, rationale: "Correcto. La realidad perfecta, eterna e inmutable se encuentra en el Mundo de las Ideas." },
+                { question: "Para Platón, el alma es...", options: ["Mortal y material.", "Creada por los sentidos.", "Inmortal y perteneciente al mundo de las Ideas.", "Una invención de los poetas."], correct: 2, rationale: "Correcto. Platón defiende el dualismo, con un alma inmortal y un cuerpo mortal." },
+
+                // Aristóteles
+                { question: "¿Cuál es la principal diferencia entre Platón y Aristóteles sobre la realidad?", options: ["Platón era griego y Aristóteles no.", "Aristóteles creía que la realidad está en este mundo sensible, no en uno de Ideas.", "Platón no creía en el alma.", "Aristóteles era sofista."], correct: 1, rationale: "Correcto. Aristóteles 'baja' la filosofía a la tierra, sosteniendo que el conocimiento parte de la experiencia en este mundo." },
+                { question: "La teoría aristotélica que dice que todo está compuesto de materia y forma se llama:", options: ["Dualismo", "Atomismo", "Hilemorfismo", "Idealismo"], correct: 2, rationale: "Correcto. El hilemorfismo (hyle=materia, morphe=forma) es su teoría fundamental sobre la sustancia." },
+                { question: "En la ética de Aristóteles, la virtud se encuentra en:", options: ["Los extremos.", "El justo medio.", "La obediencia a los dioses.", "El éxito material."], correct: 1, rationale: "Correcto. La virtud es el equilibrio entre dos vicios, uno por exceso y otro por defecto." },
+                { question: "Cuando Aristóteles dice que el hombre es un 'animal político', se refiere a que:", options: ["Todos los hombres deben ser políticos.", "El ser humano solo se realiza plenamente en sociedad.", "La política es como un zoológico.", "Los animales también votan."], correct: 1, rationale: "Correcto. Significa que nuestra naturaleza es vivir y desarrollarnos en una comunidad (polis)." },
+
+                // Modernos (Moro, Hobbes, Kant)
+                { question: "¿Qué critica principalmente Tomás Moro en su obra 'Utopía'?", options: ["La filosofía de Platón.", "La democracia.", "La desigualdad y corrupción de la sociedad de su época.", "La ciencia moderna."], correct: 2, rationale: "Correcto. 'Utopía' es una crítica a la sociedad inglesa del siglo XVI, usando una isla ideal como contraste." },
+                { question: "La frase 'El hombre es el lobo del hombre' describe la visión de Hobbes sobre:", options: ["La vida en sociedad.", "La monarquía.", "El estado de naturaleza.", "La amistad."], correct: 2, rationale: "Correcto. Describe un estado natural de guerra y caos sin un poder central." },
+                { question: "Para Hobbes, ¿por qué la gente acepta el 'Contrato Social'?", options: ["Por amor al prójimo.", "Por mandato divino.", "Para obtener seguridad y escapar del caos.", "Para obtener más libertad."], correct: 2, rationale: "Correcto. La gente cede libertad a cambio de la seguridad que provee el Estado (Leviatán)." },
+                { question: "El 'imperativo categórico' de Kant es un principio que se basa en:", options: ["Las consecuencias de los actos.", "La búsqueda de la felicidad.", "La intención y el deber moral.", "Las leyes del Estado."], correct: 2, rationale: "Correcto. Es el pilar de su ética deontológica: actuar por deber, basando la acción en una máxima universalizable." },
+                { question: "La 'revolución copernicana' de Kant en filosofía se refiere a:", options: ["Probar que la Tierra gira alrededor del Sol.", "Poner al sujeto y su mente en el centro del conocimiento.", "Criticar a la Iglesia.", "Escribir sobre astronomía."], correct: 1, rationale: "Correcto. Así como Copérnico cambió el centro del universo, Kant cambió el centro del conocimiento del objeto al sujeto." },
+                { question: "El conocimiento 'a posteriori' según Kant es aquel que...", options: ["Es universal y necesario.", "Proviene de la experiencia.", "Es innato en la mente.", "No es posible para los humanos."], correct: 1, rationale: "Correcto. El conocimiento 'a posteriori' es empírico, se deriva de la experiencia sensible." },
+                { question: "Para Aristóteles, la metafísica estudia...", options: ["Los fenómenos físicos.", "Las opiniones de la gente.", "El ser en cuanto ser.", "Las matemáticas."], correct: 2, rationale: "Correcto. Aristóteles la llamó 'filosofía primera' porque estudia los principios más fundamentales de la realidad." }
+            ];
+
+            const quizContainer = document.getElementById('quiz-container');
+            if (quizContainer) {
+                let currentQuizQuestions = [];
+                let currentQuestionIndex = 0;
+                let score = 0;
+
+                function shuffleArray(array) {
+                    for (let i = array.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [array[i], array[j]] = [array[j], array[i]];
+                    }
+                }
+                
+                function startNewQuiz() {
+                    shuffleArray(fullQuizData);
+                    currentQuizQuestions = fullQuizData.slice(0, 10);
+                    currentQuestionIndex = 0;
+                    score = 0;
+                    renderQuiz();
+                }
+
+                function renderQuiz() {
+                    if (currentQuestionIndex < currentQuizQuestions.length) {
+                        const questionData = currentQuizQuestions[currentQuestionIndex];
+                        quizContainer.innerHTML = `
+                            <div class="card p-8 rounded-2xl">
+                                <h3 class="text-xl md:text-2xl font-bold mb-6">${currentQuestionIndex + 1}. ${questionData.question}</h3>
+                                <div class="space-y-4">
+                                    ${questionData.options.map((option, index) => `
+                                        <div class="quiz-option p-4 rounded-lg" data-index="${index}">
+                                            ${option}
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <div id="feedback" class="mt-6 text-center font-semibold min-h-[48px]"></div>
+                                <div class="mt-6 text-center">
+                                    <button id="next-btn" class="hidden quiz-button font-bold py-2 px-6 rounded-full">Siguiente</button>
+                                </div>
+                            </div>
+                        `;
+
+                        const options = quizContainer.querySelectorAll('.quiz-option');
+                        options.forEach(option => {
+                            option.addEventListener('click', (e) => {
+                                if (e.target.closest('.quiz-option').classList.contains('answered')) return;
+                                
+                                options.forEach(opt => opt.classList.add('answered'));
+                                checkAnswer(parseInt(e.target.closest('.quiz-option').dataset.index));
+                            });
+                        });
+
+                    } else {
+                        quizContainer.innerHTML = `
+                            <div class="card p-8 rounded-2xl text-center">
+                                <h3 class="text-2xl md:text-3xl font-bold mb-4">¡Evaluación Completada!</h3>
+                                <p class="text-lg mb-6">Tu puntuación: <span class="font-bold text-primary text-2xl">${score} / ${currentQuizQuestions.length}</span></p>
+                                <p class="mb-8">Has demostrado una gran comprensión de la filosofía. ¡Sigue cuestionando la realidad!</p>
+                                <div class="text-center">
+                                    <button id="restart-btn" class="quiz-button font-bold py-2 px-6 rounded-full">Volver a Intentar</button>
+                                </div>
+                            </div>
+                        `;
+                        document.getElementById('restart-btn').addEventListener('click', startNewQuiz);
+                    }
+                }
+
+                function checkAnswer(selectedIndex) {
+                    const questionData = currentQuizQuestions[currentQuestionIndex];
+                    const options = quizContainer.querySelectorAll('.quiz-option');
+                    const feedbackEl = document.getElementById('feedback');
+                    const nextBtn = document.getElementById('next-btn');
+                    
+                    options[selectedIndex].classList.add('selected');
+                    
+                    if (selectedIndex === questionData.correct) {
+                        options[selectedIndex].classList.add('correct');
+                        feedbackEl.textContent = questionData.rationale;
+                        feedbackEl.style.color = 'var(--secondary-color)';
+                        score++;
+                    } else {
+                        options[selectedIndex].classList.add('incorrect');
+                        options[questionData.correct].classList.add('correct');
+                        feedbackEl.textContent = "Respuesta incorrecta. " + questionData.rationale;
+                        feedbackEl.style.color = 'var(--error-color)';
+                    }
+                    
+                    nextBtn.classList.remove('hidden');
+                    nextBtn.addEventListener('click', () => {
+                        currentQuestionIndex++;
+                        renderQuiz();
+                    }, { once: true });
+                }
+
+                startNewQuiz();
+            }
+        });
+    </script>
+
+</body>
+</html>
