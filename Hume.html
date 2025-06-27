@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía sobre el Pensamiento Político de Hume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0D1B2A;
+            color: #E0E1DD;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+        }
+        .card {
+            background-color: #1B263B;
+            border: 1px solid #415A77;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 45vh;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+                max-height: 50vh;
+            }
+        }
+        .kpi-number {
+            font-size: 3.5rem;
+            line-height: 1;
+            font-weight: 700;
+            color: #778DA9;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #778DA9;
+            line-height: 1;
+        }
+        .flow-box {
+            background-color: #415A77;
+            color: #E0E1DD;
+        }
+    </style>
+</head>
+<body class="antialiased"><nav class="navbar">
+  <a href="cuestionario.html">Cuestionario</a>
+  <a href="filosofia.html">Filosofía</a>
+  <a href="spinoza.html">Spinoza</a>
+  <a href="jefferson.html">Jefferson</a>
+  <a href="hume.html" class="active">Hume</a>
+  <a href="montaigne.html">Montaigne</a>
+  <a href="voltaire.html">Voltaire</a>
+</nav>
+<style>
+  .navbar {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    align-items: center;
+    background-color: #415A77;
+    padding: 18px 12px;
+    font-family: 'Inter', sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 8px 0 #0002;
+  }
+  .navbar a {
+    color: #E0E1DD;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.08rem;
+    transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+    padding: 7px 16px;
+    border-radius: 6px;
+  }
+  .navbar a:hover,
+  .navbar a.active {
+    background: #1B263B;
+    color: #fff;
+    box-shadow: 0 2px 8px 0 #0D1B2A44;
+  }
+  @media (max-width: 768px) {
+    .navbar {
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px 4px;
+    }
+    .navbar a {
+      font-size: 0.97rem;
+      padding: 6px 10px;
+    }
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <header class="text-center py-12 px-4 bg-[#1B263B]">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">La Política como Ciencia</h1>
+        <h2 class="text-xl md:text-2xl text-[#E0E1DD]">Una Visualización del Pensamiento de David Hume</h2>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <section id="introduccion" class="md:col-span-2 card rounded-xl shadow-lg p-6 text-center">
+                <h3 class="text-3xl font-bold text-white mb-4">Leyes o Hombres: ¿Qué Fundamenta un Buen Gobierno?</h3>
+                <p class="text-lg text-[#E0E1DD] max-w-3xl mx-auto">Hume plantea una pregunta central: ¿la calidad de un gobierno depende del carácter de sus gobernantes o de la solidez de sus leyes e instituciones? Aunque el liderazgo importa, Hume argumenta que una dependencia excesiva en los individuos es un defecto, especialmente en gobiernos absolutos. La verdadera estabilidad proviene de un sistema bien diseñado.</p>
+            </section>
+
+            <section id="instituciones" class="md:col-span-2 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">1. El Poder de las Instituciones</h3>
+                <p class="text-[#E0E1DD] mb-6">El núcleo de la tesis de Hume es que las "leyes y formas particulares de gobierno" tienen una fuerza tan predecible que la política puede ser tratada casi como una ciencia. Una constitución sabiamente diseñada crea un sistema donde el interés de los individuos, incluso los egoístas, se alinea con el bien público. Compara dos modelos de aristocracia para ilustrar su punto.</p>
+                <div class="chart-container">
+                    <canvas id="institutionsChart"></canvas>
+                </div>
+            </section>
+
+            <section id="opinion" class="md:col-span-2 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4 bg-[#415A77] p-3 rounded-md">2. El Fundamento de Todo Gobierno: La Opinión</h3>
+                <p class="text-[#E0E1DD] mb-6">Hume afirma que, dado que la fuerza está siempre del lado de los gobernados, los gobernantes se sostienen únicamente sobre la "opinión". Todo gobierno, desde el más despótico hasta el más libre, se basa en lo que la gente cree. Esta opinión tiene tres componentes esenciales.</p>
+                <div class="chart-container" style="height: 300px; max-height: 300px;">
+                    <canvas id="opinionChart"></canvas>
+                </div>
+            </section>
+
+            <section id="modelo-ideal" class="md:col-span-2 card rounded-xl shadow-lg p-6">
+                 <h3 class="text-2xl font-bold text-white mb-4">3. El Axioma para el Mejor Gobierno</h3>
+                <p class="text-[#E0E1DD] mb-6">A partir de sus análisis, Hume propone una fórmula para la mejor forma de gobierno, un sistema mixto que equilibra los diferentes poderes e intereses de la sociedad para asegurar la libertad y la estabilidad.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mt-6">
+                    <div class="flow-box p-4 rounded-lg shadow-md">
+                        <h4 class="text-xl font-bold">Monarquía</h4>
+                        <p class="mt-2">Un **príncipe hereditario** para asegurar la continuidad y evitar las luchas faccionales de las elecciones.</p>
+                    </div>
+                    <div class="flow-box p-4 rounded-lg shadow-md">
+                        <h4 class="text-xl font-bold">Aristocracia</h4>
+                        <p class="mt-2">Una **nobleza sin vasallos**, cuyo poder reside en el cuerpo colectivo, no en feudos individuales, para mantener el orden.</p>
+                    </div>
+                     <div class="flow-box p-4 rounded-lg shadow-md">
+                        <h4 class="text-xl font-bold">Democracia</h4>
+                        <p class="mt-2">Un **pueblo que vota a través de representantes**, evitando así el caos de la democracia directa de las grandes masas.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="provincias" class="card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">4. Una Verdad Política: El Trato a las Provincias</h3>
+                <p class="text-[#E0E1DD] mb-6">Hume observa una máxima política: los gobiernos libres han sido históricamente más opresivos con sus provincias que las monarquías absolutas. En una república, los conquistadores son también legisladores y tienden a explotar las provincias para su propio beneficio, mientras que un monarca ve a todos sus súbditos, viejos y nuevos, con mayor igualdad.</p>
+                <div class="chart-container" style="height: 400px; max-height:400px;">
+                    <canvas id="provincesChart"></canvas>
+                </div>
+            </section>
+
+            <section id="conclusion" class="card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">5. La Virtud y la Moderación Política</h3>
+                <p class="text-[#E0E1DD] mb-6">Finalmente, Hume hace un llamado a la moderación. Si una constitución es verdaderamente buena, es robusta y puede resistir a ministros incompetentes. Si es mala, ningún ministro podrá salvarla. Por lo tanto, el celo de los patriotas no debe centrarse en atacar o defender a individuos, sino en preservar y mejorar las "formas e instituciones" que garantizan la libertad y el bien público.</p>
+                 <div class="mt-6 p-6 bg-[#0D1B2A] rounded-lg shadow-inner border-l-4 border-[#778DA9]">
+                    <p class="text-center italic text-xl text-[#E0E1DD]">"Una constitución es buena sólo en la medida en que proporciona un remedio contra el mal gobierno."</p>
+                    <p class="text-right text-base mt-2">- David Hume</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="text-center p-8 mt-8 text-sm text-[#415A77]">
+        <p>© 2025 Alan Maillet. Todos los derechos reservados. Hecho con la única intención de facilitarle la vida a los estudiantes.</p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const wrapLabel = (label) => {
+            if (label.length <= 16) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > 16) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        };
+        
+        const institutionsCanvas = document.getElementById('institutionsChart');
+        if (institutionsCanvas) {
+            new Chart(institutionsCanvas.getContext('2d'), {
+                type: 'radar',
+                data: {
+                    labels: ['Orden', 'Estabilidad', 'Protección de Propiedad', 'Poder Colectivo', 'Libertad Individual'],
+                    datasets: [{
+                        label: 'Aristocracia Institucional',
+                        data: [9, 8, 8, 9, 6],
+                        fill: true,
+                        backgroundColor: 'rgba(119, 141, 169, 0.4)',
+                        borderColor: '#778DA9',
+                        pointBackgroundColor: '#778DA9',
+                    }, {
+                        label: 'Aristocracia Personalista',
+                        data: [3, 2, 4, 3, 8],
+                        fill: true,
+                        backgroundColor: 'rgba(65, 90, 119, 0.4)',
+                        borderColor: '#415A77',
+                        pointBackgroundColor: '#415A77',
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#E0E1DD' } },
+                        title: { display: true, text: 'Comparación de Modelos Aristocráticos', color: '#E0E1DD', font: { size: 16 } },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(120, 141, 169, 0.3)' },
+                            grid: { color: 'rgba(120, 141, 169, 0.3)' },
+                            pointLabels: { color: '#E0E1DD', font: { size: 12 } },
+                            ticks: { display: false, stepSize: 2 },
+                            min: 0,
+                            max: 10
+                        }
+                    }
+                }
+            });
+        }
+
+        const opinionCanvas = document.getElementById('opinionChart');
+        if (opinionCanvas) {
+            new Chart(opinionCanvas.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: [wrapLabel('Opinión de Interés (Utilidad)'), wrapLabel('Opinión de Derecho al Poder'), wrapLabel('Opinión de Derecho a la Propiedad')],
+                    datasets: [{
+                        data: [40, 35, 25],
+                        backgroundColor: ['#415A77', '#778DA9', '#E0E1DD'],
+                        borderColor: '#1B263B',
+                        borderWidth: 4,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#E0E1DD', boxWidth: 15, padding: 20 } },
+                        title: { display: true, text: 'Los Tres Pilares de la Opinión Pública', color: '#E0E1DD', font: { size: 16 } },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    }
+                }
+            });
+        }
+        
+        const provincesCanvas = document.getElementById('provincesChart');
+        if (provincesCanvas) {
+            new Chart(provincesCanvas.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Gobiernos Libres (Repúblicas)', 'Monarquías Absolutas'],
+                    datasets: [{
+                        label: 'Felicidad de los Ciudadanos',
+                        data: [9, 6],
+                        backgroundColor: '#778DA9',
+                    }, {
+                        label: 'Opresión de las Provincias',
+                        data: [8, 3],
+                        backgroundColor: '#415A77',
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Nivel de Bienestar vs. Opresión (Escala 1-10)', color: '#E0E1DD', font: { size: 16 } },
+                        legend: { position: 'bottom', labels: { color: '#E0E1DD' } },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { color: '#E0E1DD' } },
+                        y: { beginAtZero: true, max: 10, grid: { color: 'rgba(120, 141, 169, 0.3)' }, ticks: { color: '#E0E1DD' } }
+                    }
+                }
+            });
+        }
+    });
+    </script>
+</body>
+</html>
