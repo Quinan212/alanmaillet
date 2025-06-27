@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía sobre el Tratado de la Tolerancia de Voltaire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0D1B2A;
+            color: #E0E1DD;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+        }
+        .card {
+            background-color: #1B263B;
+            border: 1px solid #415A77;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 45vh;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+                max-height: 50vh;
+            }
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #778DA9;
+            line-height: 1;
+        }
+        .flow-box {
+            background-color: #415A77;
+            color: #E0E1DD;
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 2rem;
+            border-left: 2px solid #415A77;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -0.5rem;
+            top: 0.25rem;
+            height: 1rem;
+            width: 1rem;
+            background-color: #778DA9;
+            border-radius: 9999px;
+            border: 2px solid #1B263B;
+        }
+    </style>
+</head>
+<body class="antialiased"><nav class="navbar">
+  <a href="cuestionario.html">Cuestionario</a>
+  <a href="filosofia.html">Filosofía</a>
+  <a href="spinoza.html">Spinoza</a>
+  <a href="jefferson.html">Jefferson</a>
+  <a href="hume.html">Hume</a>
+  <a href="montaigne.html">Montaigne</a>
+  <a href="voltaire.html" class="active">Voltaire</a>
+</nav>
+<style>
+  .navbar {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    align-items: center;
+    background-color: #415A77;
+    padding: 18px 12px;
+    font-family: 'Inter', sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 8px 0 #0002;
+  }
+  .navbar a {
+    color: #E0E1DD;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.08rem;
+    transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+    padding: 7px 16px;
+    border-radius: 6px;
+  }
+  .navbar a:hover,
+  .navbar a.active {
+    background: #1B263B;
+    color: #fff;
+    box-shadow: 0 2px 8px 0 #0D1B2A44;
+  }
+  @media (max-width: 768px) {
+    .navbar {
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px 4px;
+    }
+    .navbar a {
+      font-size: 0.97rem;
+      padding: 6px 10px;
+    }
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <header class="text-center py-12 px-4 bg-[#1B263B]">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">El Clamor contra el Fanatismo</h1>
+        <h2 class="text-xl md:text-2xl text-[#E0E1DD]">Una Visualización del Tratado sobre la Tolerancia de Voltaire</h2>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <section id="caso-calas" class="lg:col-span-2 card rounded-xl shadow-lg p-6">
+                <h3 class="text-3xl font-bold text-white mb-4">1. El Caso Jean Calas: Crónica de una Injusticia</h3>
+                <p class="text-[#E0E1DD] mb-6">El tratado de Voltaire parte de un caso real y trágico: el de Jean Calas, un comerciante protestante falsamente acusado y ejecutado en Toulouse en 1762 por el supuesto asesinato de su hijo para impedir su conversión al catolicismo. Voltaire utiliza este caso para exponer cómo el fanatismo religioso puede corromper la justicia y conducir a la barbarie.</p>
+                <div class="relative">
+                    <div class="timeline-item"><div class="timeline-dot"></div><h4 class="font-bold">12 Oct 1761</h4><p>Marc-Antoine Calas es encontrado muerto. Se suicidó, pero un rumor fanático acusa a su padre, Jean Calas, de asesinato.</p></div>
+                    <div class="timeline-item"><div class="timeline-dot"></div><h4 class="font-bold">Pocos días después</h4><p>A pesar de ser un suicida, Marc-Antoine es enterrado con honores de mártir. Toda la familia Calas es encarcelada.</p></div>
+                    <div class="timeline-item"><div class="timeline-dot"></div><h4 class="font-bold">9 Mar 1762</h4><p>Sin pruebas, y con una mayoría judicial de solo 8 contra 5, Jean Calas es condenado y ejecutado en la rueda.</p></div>
+                    <div class="timeline-item border-l-transparent pb-0"><div class="timeline-dot"></div><h4 class="font-bold">Post-ejecución</h4><p>El resto de la familia es absuelta o desterrada, una sentencia que contradice la condena del padre y expone el error judicial.</p></div>
+                </div>
+            </section>
+            
+            <section id="mecanismo-fanatismo" class="lg:col-span-2 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">2. La Anatomía del Fanatismo</h3>
+                <p class="text-[#E0E1DD] mb-6">El caso Calas revela un patrón peligroso. Voltaire muestra cómo la intolerancia transforma la histeria colectiva en una verdad aceptada, llevando a las instituciones, que deberían proteger al ciudadano, a cometer las peores atrocidades en nombre de la religión.</p>
+                <div class="text-center mt-8"><div class="flow-box p-4 rounded-lg shadow-md inline-block"><p>Rumor y Superstición Popular</p></div><div class="flow-arrow my-2">↓</div><div class="flow-box p-4 rounded-lg shadow-md inline-block"><p>Presión de Grupos Fanáticos (Cofradías)</p></div><div class="flow-arrow my-2">↓</div><div class="flow-box p-4 rounded-lg shadow-md inline-block"><p>Procedimiento Judicial Viciado</p></div><div class="flow-arrow my-2">↓</div><div class="bg-red-800 text-white p-4 rounded-lg shadow-xl inline-block"><h4 class="text-xl font-bold">INJUSTICIA Y ASESINATO LEGAL</h4></div></div>
+            </section>
+
+            <section id="reforma" class="card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">3. La Chispa de la Reforma</h3>
+                <p class="text-[#E0E1DD] mb-6">Voltaire no justifica a los "heréticos", pero sí explica el origen de la Reforma como una reacción legítima a la corrupción y los abusos sistemáticos de la Iglesia de su tiempo. La intolerancia, argumenta, no nació de un vacío, sino de un poder corrupto que se negaba a reformarse.</p>
+                 <ul class="space-y-3 mt-4">
+                    <li class="flow-box p-3 rounded-lg">Compra y venta de cargos papales.</li>
+                    <li class="flow-box p-3 rounded-lg">Tráfico de indulgencias como un "mercado público".</li>
+                    <li class="flow-box p-3 rounded-lg">Extorsión económica a través de anatas y dispensas.</li>
+                    <li class="flow-box p-3 rounded-lg">Papas guerreros y criminales (Julio II, Alejandro VI).</li>
+                </ul>
+            </section>
+            
+            <section id="persecucion" class="card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">4. El Engranaje de la Persecución</h3>
+                <p class="text-[#E0E1DD] mb-6">En lugar de responder con argumentos, el poder establecido reaccionó con violencia. Voltaire detalla cómo la persecución se convirtió en una política de Estado, creando un ciclo de violencia que culminó en guerras civiles y masacres.</p>
+                <div class="chart-container">
+                     <canvas id="persecutionChart"></canvas>
+                </div>
+            </section>
+            
+            <section id="derecho-natural" class="card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">5. El Derecho Natural vs. El Derecho de los Tigres</h3>
+                <p class="text-[#E0E1DD] mb-6">Voltaire argumenta que el derecho a la intolerancia es "absurdo y bárbaro". El verdadero derecho, tanto natural como humano, se basa en el principio universal: "No hagas lo que no quisieras que te hagan". La intolerancia viola este principio fundamental.</p>
+                <div class="chart-container" style="height: 300px; max-height: 300px;">
+                    <canvas id="rightsChart"></canvas>
+                </div>
+            </section>
+
+             <section id="absurdo-dogma" class="card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">6. La Absurdidad del Dogma</h3>
+                <p class="text-[#E0E1DD] mb-6">Con su característica ironía, Voltaire expone lo ridículo de perseguir y torturar a personas por desacuerdos en "sofismas incomprensibles". ¿Es razonable quemar a un hombre por una disputa sobre una letra del alfabeto o un punto doctrinal que nadie entiende completamente?</p>
+                 <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flow-box p-4 rounded-lg text-center">
+                        <h4 class="font-bold text-lg mb-2">Causas de Persecución</h4>
+                        <p class="text-sm">Disputas sobre el purgatorio.</p>
+                        <p class="text-sm">Veneración de reliquias.</p>
+                        <p class="text-sm">Una palabra o una letra en un texto.</p>
+                    </div>
+                    <div class="flow-box p-4 rounded-lg text-center">
+                        <h4 class="font-bold text-lg mb-2">Consecuencias</h4>
+                        <p class="text-sm">Tortura y ejecución en la hoguera.</p>
+                        <p class="text-sm">Guerras civiles y masacres.</p>
+                        <p class="text-sm">Pérdida de la humanidad.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="juicio-universal" class="lg:col-span-2 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">7. La Perspectiva del Juicio Universal</h3>
+                <p class="text-[#E0E1DD] mb-6">Voltaire nos pide imaginar el Juicio Final. ¿Condenaría Dios a grandes pensadores y líderes virtuosos como Sócrates o Trajano, simplemente por no seguir ciertos ritos, mientras que asesinos como Ravaillac serían salvados por morir "dentro de las fórmulas prescritas"? Esta pregunta retórica subraya que la verdadera moralidad es universal y se basa en las obras, no en el dogma.</p>
+                <div class="chart-container">
+                    <canvas id="judgmentChart"></canvas>
+                </div>
+            </section>
+            
+            <section id="tolerancia" class="card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">8. Hacia la Tolerancia Universal</h3>
+                <p class="text-[#E0E1DD] mb-6">La solución de Voltaire es reconocer nuestra humanidad compartida. Utiliza la famosa analogía del "pequeño globo" y el "hormiguero" para ridiculizar la soberbia de cualquier grupo que se considere el único poseedor de la verdad divina. La tolerancia nace de la humildad.</p>
+                <div class="chart-container" style="height: 300px; max-height: 300px;">
+                    <canvas id="toleranceChart"></canvas>
+                </div>
+            </section>
+            
+             <section id="hermanos" class="card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">9. Todos los Hombres son Hermanos</h3>
+                <p class="text-[#E0E1DD] mb-6">El argumento culmina en una idea radical para su tiempo: debemos ver a todos los hombres como hermanos. Ya sea turco, chino, judío o siamés. Esta hermandad se basa en que todos somos criaturas del mismo Dios y habitantes de un mismo "punto" en la inmensidad del universo.</p>
+                <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                     <div class="p-3 flow-box rounded-lg">Turco</div>
+                     <div class="p-3 flow-box rounded-lg">Chino</div>
+                     <div class="p-3 flow-box rounded-lg">Judío</div>
+                     <div class="p-3 flow-box rounded-lg">Siamés</div>
+                </div>
+                 <p class="text-center font-bold text-2xl text-white mt-4">↓</p>
+                 <p class="text-center font-bold text-xl text-[#778DA9]">Son nuestros Hermanos</p>
+            </section>
+
+            <section id="legado" class="lg:col-span-2 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">10. El Legado de Voltaire: "Écrasez l'Infâme!"</h3>
+                <p class="text-[#E0E1DD] mb-6">El *Tratado sobre la tolerancia* no es solo una obra filosófica; es un acto de activismo. Voltaire encarnó la figura del intelectual comprometido que usa su pluma como un arma contra la injusticia. Su lucha contra "El Infame" —el fanatismo, la superstición y la opresión— se convirtió en el grito de guerra de la Ilustración y sigue vigente hoy.</p>
+                <div class="mt-6 p-6 bg-[#0D1B2A] rounded-lg shadow-inner border-l-4 border-[#778DA9]">
+                    <p class="text-center italic text-xl text-[#E0E1DD]">"No se necesita mucho arte, ni una elocuencia muy rebuscada para demostrar que los cristianos deben tolerarse unos a otros. Voy más lejos: os digo que hay que mirar a todos los hombres como hermanos nuestros."</p>
+                    <p class="text-right text-base mt-2">- Voltaire, Cap. XXII</p>
+                </div>
+            </section>
+            
+        </div>
+    </main>
+
+    <footer class="text-center p-8 mt-8 text-sm text-[#415A77]">
+        <p>© 2025 Alan Maillet. Todos los derechos reservados. Hecho con la única intención de facilitarle la vida a los estudiantes.</p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const wrapLabel = (label) => {
+            if (label.length <= 16) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > 16) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        };
+
+        const rightsCanvas = document.getElementById('rightsChart');
+        if (rightsCanvas) {
+            new Chart(rightsCanvas.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Razón', 'Universalidad', 'Respeto Mutuo'],
+                    datasets: [{
+                        label: 'Derecho Natural',
+                        data: [10, 10, 10],
+                        backgroundColor: 'rgba(119, 141, 169, 0.7)',
+                        borderColor: '#778DA9',
+                        borderWidth: 2,
+                    }, {
+                        label: 'Derecho de la Intolerancia',
+                        data: [2, 1, 1],
+                        backgroundColor: 'rgba(224, 225, 221, 0.7)',
+                        borderColor: '#E0E1DD',
+                        borderWidth: 2,
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Comparación de "Derechos"', color: '#E0E1DD', font: { size: 16 } },
+                        legend: { position: 'bottom', labels: { color: '#E0E1DD' } },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, max: 10, grid: { color: 'rgba(120, 141, 169, 0.3)' }, ticks: { color: '#E0E1DD' } },
+                        x: { ticks: { color: '#E0E1DD' } }
+                    }
+                }
+            });
+        }
+        
+        const toleranceCanvas = document.getElementById('toleranceChart');
+        if (toleranceCanvas) {
+            new Chart(toleranceCanvas.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Mi "Hormiguero"', 'El Resto de la Humanidad'],
+                    datasets: [{
+                        data: [1, 99],
+                        backgroundColor: ['#E0E1DD', '#415A77'],
+                        borderColor: '#1B263B',
+                        borderWidth: 4,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#E0E1DD' } },
+                        title: { display: true, text: 'La Absurdidad del Fanatismo', color: '#E0E1DD', font: { size: 16 } },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    }
+                }
+            });
+        }
+
+        const persecutionCanvas = document.getElementById('persecutionChart');
+        if (persecutionCanvas) {
+            new Chart(persecutionCanvas.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Respuesta Inicial', 'Guerras Civiles', 'Masacre de San Bartolomé'],
+                    datasets: [{
+                        label: 'Nivel de Violencia',
+                        data: [4, 8, 10],
+                        backgroundColor: [
+                            'rgba(119, 141, 169, 0.7)',
+                            'rgba(65, 90, 119, 0.7)',
+                            'rgba(220, 20, 60, 0.7)',
+                        ],
+                        borderColor: [
+                            '#778DA9',
+                            '#415A77',
+                            '#DC143C'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Escalada de la Violencia Religiosa', color: '#E0E1DD', font: { size: 16 } },
+                        legend: { display: false },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    },
+                     scales: {
+                        x: { beginAtZero: true, max: 10, grid: { color: 'rgba(120, 141, 169, 0.3)' }, ticks: { color: '#E0E1DD' } },
+                        y: { ticks: { color: '#E0E1DD' } }
+                    }
+                }
+            });
+        }
+        
+        const judgmentCanvas = document.getElementById('judgmentChart');
+        if (judgmentCanvas) {
+            new Chart(judgmentCanvas.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Virtud y Razón (Sócrates, etc.)', 'Dogma y Ritual (Asesinos confesos)'],
+                    datasets: [{
+                        label: 'Probabilidad de Salvación (Según Voltaire)',
+                        data: [95, 5],
+                        backgroundColor: ['#778DA9', '#415A77'],
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Justicia Divina: Obras vs. Fórmulas', color: '#E0E1DD', font: { size: 16 } },
+                        legend: { display: false },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    },
+                    scales: {
+                         x: { ticks: { color: '#E0E1DD', font: {size: 10} } },
+                        y: { beginAtZero: true, max: 100, grid: { color: 'rgba(120, 141, 169, 0.3)' }, ticks: { color: '#E0E1DD', callback: function(value) { return value + "%"} } }
+                    }
+                }
+            });
+        }
+    });
+    </script>
+</body>
+</html>

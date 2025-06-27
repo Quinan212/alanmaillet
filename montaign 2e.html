@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía sobre los Ensayos de Montaigne</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0D1B2A;
+            color: #E0E1DD;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+        }
+        .card {
+            background-color: #1B263B;
+            border: 1px solid #415A77;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 45vh;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+                max-height: 50vh;
+            }
+        }
+        .flow-box {
+            background-color: #415A77;
+            color: #E0E1DD;
+        }
+        .icon {
+            font-size: 2.5rem;
+            color: #E0E1DD;
+        }
+    </style>
+</head>
+<body class="antialiased"><nav class="navbar">
+  <a href="cuestionario.html">Cuestionario</a>
+  <a href="filosofia.html">Filosofía</a>
+  <a href="spinoza.html">Spinoza</a>
+  <a href="jefferson.html">Jefferson</a>
+  <a href="hume.html">Hume</a>
+  <a href="montaigne.html" class="active">Montaigne</a>
+  <a href="voltaire.html">Voltaire</a>
+</nav>
+<style>
+  .navbar {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    align-items: center;
+    background-color: #415A77;
+    padding: 18px 12px;
+    font-family: 'Inter', sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 8px 0 #0002;
+  }
+  .navbar a {
+    color: #E0E1DD;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.08rem;
+    transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+    padding: 7px 16px;
+    border-radius: 6px;
+  }
+  .navbar a:hover,
+  .navbar a.active {
+    background: #1B263B;
+    color: #fff;
+    box-shadow: 0 2px 8px 0 #0D1B2A44;
+  }
+  @media (max-width: 768px) {
+    .navbar {
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px 4px;
+    }
+    .navbar a {
+      font-size: 0.97rem;
+      padding: 6px 10px;
+    }
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <header class="text-center py-12 px-4 bg-[#1B263B]">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">El Laberinto de la Condición Humana</h1>
+        <h2 class="text-xl md:text-2xl text-[#E0E1DD]">Una Visualización de los Ensayos de Montaigne</h2>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <section id="introduccion" class="lg:col-span-2 card rounded-xl shadow-lg p-6 text-center">
+                <h3 class="text-3xl font-bold text-white mb-4">La Naturaleza Ondulante del Hombre</h3>
+                <p class="text-lg text-[#E0E1DD] max-w-3xl mx-auto">Montaigne nos presenta una visión del ser humano como una criatura "pasmosamente vana, variable y ondeante". Rechaza las certezas absolutas y, a través de ejemplos históricos, demuestra que no hay reglas fijas para predecir el comportamiento humano, solo tendencias moldeadas por fuerzas a menudo invisibles.</p>
+            </section>
+
+            <section id="duality" class="card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">1. Los Dos Caminos para Ablandar Corazones</h3>
+                <p class="text-[#E0E1DD] mb-6">¿Cómo apaciguar a un vencedor? Montaigne observa que no hay una única respuesta. Depende del carácter del poderoso. A veces, la sumisión provoca piedad, pero otras veces, un acto de valentía inesperado puede despertar admiración y cambiar el curso de la venganza.</p>
+                <div class="flex justify-around mt-4 text-center">
+                    <div class="w-5/12 flow-box p-4 rounded-lg">
+                        <h4 class="text-lg font-bold">Sumisión y Piedad</h4>
+                        <p class="text-sm mt-2">Apela a la conmiseración y la dulzura del alma.</p>
+                    </div>
+                    <div class="w-5/12 flow-box p-4 rounded-lg">
+                        <h4 class="text-lg font-bold">Bravura y Firmeza</h4>
+                        <p class="text-sm mt-2">Genera sorpresa y respeto por una virtud inesperada.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="custom" class="card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">2. El Imperio de la Costumbre: La Maestra Violenta</h3>
+                <p class="text-[#E0E1DD] mb-6">Para Montaigne, la costumbre es la fuerza más poderosa que moldea nuestra existencia. Es una "maestra violenta y traidora" que se infiltra en nosotros desde la infancia, estableciendo lo que consideramos normal y adormeciendo nuestro juicio crítico.</p>
+                <div class="chart-container" style="height:300px; max-height:300px;">
+                    <canvas id="customVsReasonChart"></canvas>
+                </div>
+            </section>
+
+            <section id="relativity" class="lg:col-span-2 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">3. La Relatividad de la Moral y la Razón</h3>
+                <p class="text-[#E0E1DD] mb-6">Lo que llamamos "ley de la conciencia" o "razón" no es más que el reflejo de los hábitos de nuestro país. Montaigne nos obliga a confrontar que las prácticas que consideramos "bárbaras" en otras culturas son vistas por ellas como perfectamente normales, y viceversa. No hay un estándar universal, solo la tiranía de lo familiar.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center mt-6">
+                    <div class="flow-box p-3 rounded-lg">
+                        <div class="icon">🍽️</div>
+                        <p class="mt-2 font-semibold">Comer a los padres muertos</p>
+                    </div>
+                    <div class="flow-box p-3 rounded-lg">
+                        <div class="icon">🏛️</div>
+                        <p class="mt-2 font-semibold">Vender cargos de justicia</p>
+                    </div>
+                     <div class="flow-box p-3 rounded-lg">
+                        <div class="icon">👨‍👦</div>
+                        <p class="mt-2 font-semibold">Prestar esposas a los huéspedes</p>
+                    </div>
+                     <div class="flow-box p-3 rounded-lg">
+                        <div class="icon">⚔️</div>
+                        <p class="mt-2 font-semibold">Mujeres que van a la guerra</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="education" class="lg:col-span-2 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">4. Educación: Una Mente Bien Hecha, no Bien Llena</h3>
+                <p class="text-[#E0E1DD] mb-6">Montaigne critica duramente el "pedantismo" de su época. Sostiene que la educación no debe consistir en memorizar hechos ("llenar la cabeza de ciencia"), sino en formar el juicio. Un verdadero aprendizaje transforma al alumno, le enseña a pensar por sí mismo y a aplicar el conocimiento a la vida, en lugar de simplemente repetirlo.</p>
+                <div class="chart-container">
+                    <canvas id="educationChart"></canvas>
+                </div>
+            </section>
+
+            <section id="innovation" class="card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">5. El Peligro de la Novedad</h3>
+                <p class="text-[#E0E1DD] mb-6">Con una postura conservadora, Montaigne advierte sobre los peligros de cambiar las leyes y costumbres establecidas. Considera que la "novedad es siempre peligrosísima", ya que derribar un sistema, incluso uno imperfecto, suele engendrar más caos y males de los que pretende solucionar. El fruto del desorden raramente beneficia al innovador.</p>
+                <div class="mt-6 p-4 bg-[#0D1B2A] rounded-lg shadow-inner border-l-4 border-[#778DA9]">
+                    <p class="italic text-[#E0E1DD]">"Los que alteran el orden de un Estado, caen envueltos en su ruina; unos baten y enturbian el agua para que otros pesquen a su sabor."</p>
+                </div>
+            </section>
+
+            <section id="conclusion" class="card rounded-xl shadow-lg p-6 flex flex-col justify-center items-center">
+                <h3 class="text-2xl font-bold text-white mb-4">6. El Arte de la Duda</h3>
+                <p class="text-[#E0E1DD] text-center mb-6">El pensamiento de Montaigne no ofrece respuestas definitivas, sino una invitación constante a la reflexión y al escepticismo saludable. Nos enseña a observar el mundo con curiosidad, a cuestionar nuestras propias certezas y a reconocer la infinita complejidad y contradicción de la vida humana.</p>
+                <div class="bg-[#E0E1DD] text-[#0D1B2A] p-4 rounded-lg shadow-xl inline-block">
+                    <h4 class="text-xl font-bold text-center">"Que sais-je?"</h4>
+                    <p class="text-center">(¿Qué sé yo?)</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="text-center p-8 mt-8 text-sm text-[#415A77]">
+        <p>© 2025 Alan Maillet. Todos los derechos reservados. Hecho con la única intención de facilitarle la vida a los estudiantes.</p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const institutionsCanvas = document.getElementById('institutionsChart');
+        if (institutionsCanvas) {
+            new Chart(institutionsCanvas.getContext('2d'), {
+                type: 'radar',
+                data: {
+                    labels: ['Orden', 'Estabilidad', 'Protección de Propiedad', 'Poder Colectivo', 'Libertad Individual'],
+                    datasets: [{
+                        label: 'Aristocracia Institucional (Venecia)',
+                        data: [9, 8, 8, 9, 6],
+                        fill: true,
+                        backgroundColor: 'rgba(119, 141, 169, 0.4)',
+                        borderColor: '#778DA9',
+                        pointBackgroundColor: '#778DA9',
+                    }, {
+                        label: 'Aristocracia Personalista (Polonia)',
+                        data: [3, 2, 4, 3, 8],
+                        fill: true,
+                        backgroundColor: 'rgba(65, 90, 119, 0.4)',
+                        borderColor: '#415A77',
+                        pointBackgroundColor: '#415A77',
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#E0E1DD' } },
+                        title: { display: true, text: 'Comparación de Modelos Aristocráticos', color: '#E0E1DD', font: { size: 16 } },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(120, 141, 169, 0.3)' },
+                            grid: { color: 'rgba(120, 141, 169, 0.3)' },
+                            pointLabels: { color: '#E0E1DD', font: { size: 12 } },
+                            ticks: { display: false, stepSize: 2 },
+                            min: 0,
+                            max: 10
+                        }
+                    }
+                }
+            });
+        }
+
+        const opinionCanvas = document.getElementById('opinionChart');
+        if (opinionCanvas) {
+            new Chart(opinionCanvas.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Opinión de Interés', 'Derecho al Poder', 'Derecho a la Propiedad'],
+                    datasets: [{
+                        data: [40, 35, 25],
+                        backgroundColor: ['#415A77', '#778DA9', '#E0E1DD'],
+                        borderColor: '#1B263B',
+                        borderWidth: 4,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#E0E1DD', boxWidth: 15, padding: 20 } },
+                        title: { display: true, text: 'Los Tres Pilares de la Opinión Pública', color: '#E0E1DD', font: { size: 16 } },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    }
+                }
+            });
+        }
+        
+        const provincesCanvas = document.getElementById('provincesChart');
+        if (provincesCanvas) {
+            new Chart(provincesCanvas.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Gobiernos Libres (Repúblicas)', 'Monarquías Absolutas'],
+                    datasets: [{
+                        label: 'Felicidad de los Ciudadanos',
+                        data: [9, 6],
+                        backgroundColor: '#778DA9',
+                    }, {
+                        label: 'Opresión de las Provincias',
+                        data: [8, 3],
+                        backgroundColor: '#415A77',
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Bienestar vs. Opresión (Escala 1-10)', color: '#E0E1DD', font: { size: 16 } },
+                        legend: { position: 'bottom', labels: { color: '#E0E1DD' } },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { color: '#E0E1DD' } },
+                        y: { beginAtZero: true, max: 10, grid: { color: 'rgba(120, 141, 169, 0.3)' }, ticks: { color: '#E0E1DD' } }
+                    }
+                }
+            });
+        }
+
+        const customVsReasonCanvas = document.getElementById('customVsReasonChart');
+        if (customVsReasonCanvas) {
+            new Chart(customVsReasonCanvas.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Imperio de la Costumbre', 'Juicio Racional'],
+                    datasets: [{
+                        data: [85, 15],
+                        backgroundColor: ['#415A77', '#E0E1DD'],
+                        borderColor: '#1B263B',
+                        borderWidth: 4,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#E0E1DD' } },
+                        title: { display: true, text: 'Influencia sobre el Juicio Humano', color: '#E0E1DD', font: { size: 16 } },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    }
+                }
+            });
+        }
+
+        const educationCanvas = document.getElementById('educationChart');
+        if(educationCanvas) {
+            new Chart(educationCanvas.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Memorización (Saber)', 'Juicio y Entendimiento (Sabiduría)'],
+                    datasets: [{
+                        label: 'Énfasis en la Educación',
+                        data: [3, 9],
+                        backgroundColor: ['#415A77', '#778DA9'],
+                        borderColor: '#E0E1DD',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {display: false},
+                        title: { display: true, text: 'El Objetivo de la Verdadera Educación', color: '#E0E1DD', font: { size: 16 } },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    },
+                    scales: {
+                        x: { beginAtZero: true, max: 10, ticks: { color: '#E0E1DD' }, grid: {color: 'rgba(120, 141, 169, 0.3)'} },
+                        y: { ticks: { color: '#E0E1DD' }, grid: {display: false} }
+                    }
+                }
+            });
+        }
+
+    });
+    </script>
+</body>
+</html>
