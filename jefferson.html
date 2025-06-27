@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía sobre el Pensamiento Político de Jefferson</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0D1B2A;
+            color: #E0E1DD;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+        }
+        .card {
+            background-color: #1B263B;
+            border: 1px solid #415A77;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 45vh;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+                max-height: 50vh;
+            }
+        }
+        .kpi-number {
+            font-size: 3.5rem;
+            line-height: 1;
+            font-weight: 700;
+            color: #778DA9;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #778DA9;
+            line-height: 1;
+        }
+        .flow-box {
+            background-color: #415A77;
+            color: #E0E1DD;
+        }
+        .icon {
+            font-size: 2.5rem;
+            color: #E0E1DD;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="text-center py-12 px-4 bg-[#1B263B]">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">La Arquitectura de la Libertad</h1>
+        <h2 class="text-xl md:text-2xl text-[#E0E1DD]">Una Visualización del Pensamiento de Thomas Jefferson</h2>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            <section id="introduccion" class="md:col-span-2 lg:col-span-4 card rounded-xl shadow-lg p-6">
+                <h3 class="text-3xl font-bold text-white mb-4 text-center">Crítica a las Constituciones: Defectos de Diseño</h3>
+                <p class="text-lg text-[#E0E1DD] max-w-4xl mx-auto text-center">Jefferson, analizando la constitución de Virginia, la considera un primer intento imperfecto, creado por hombres "nuevos e inexpertos en la ciencia del gobierno". Identifica dos fallos fundamentales que socavan los principios de una verdadera república: la representación desigual y la peligrosa concentración de poderes.</p>
+            </section>
+            
+            <section id="representacion" class="lg:col-span-2 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">1. La Tiranía de la Representación Desigual</h3>
+                <p class="text-[#E0E1DD] mb-6">Jefferson denuncia que la representación no se basa en la población, sino en divisiones geográficas arbitrarias. Esto crea una profunda injusticia donde la voz de un ciudadano en un condado pequeño vale diecisiete veces más que la de uno en un condado grande, pervirtiendo el principio democrático.</p>
+                <div class="chart-container">
+                    <canvas id="representationChart"></canvas>
+                </div>
+            </section>
+            
+            <section id="despotismo" class="lg:col-span-2 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">2. La Concentración de Poderes: La Definición de Despotismo</h3>
+                <p class="text-[#E0E1DD] mb-6">Para Jefferson, la esencia del gobierno despótico es la concentración de todos los poderes (legislativo, ejecutivo y judicial) en las mismas manos. No importa si es un solo tirano o una asamblea de 173; el resultado es el mismo. La libertad exige una separación estricta y un sistema de frenos y contrapesos entre los poderes.</p>
+                 <div class="mt-8 text-center">
+                    <div class="grid grid-cols-3 gap-2 mb-2">
+                        <div class="flex flex-col items-center">
+                            <div class="flow-box p-3 rounded-lg shadow-md w-full"><p>Legislativo</p></div>
+                            <div class="flow-arrow mt-3 transform -rotate-30">↓</div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                             <div class="flow-box p-3 rounded-lg shadow-md w-full"><p>Ejecutivo</p></div>
+                             <div class="flow-arrow mt-3">↓</div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                             <div class="flow-box p-3 rounded-lg shadow-md w-full"><p>Judicial</p></div>
+                             <div class="flow-arrow mt-3 transform rotate-30">↓</div>
+                        </div>
+                    </div>
+                     <div class="bg-[#E0E1DD] text-[#0D1B2A] p-4 rounded-lg shadow-xl inline-block">
+                        <h4 class="text-xl font-bold">DESPOTISMO</h4>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="derechos" class="md:col-span-2 lg:col-span-4 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">3. La Declaración de Derechos: Una Exigencia Innegociable</h3>
+                <p class="text-[#E0E1DD] mb-6">La mayor crítica de Jefferson a la nueva Constitución de EE.UU. fue su omisión de una Declaración de Derechos. Para él, esta no era un lujo, sino un pilar fundamental. Creía que "una declaración de derechos es aquello a que el pueblo tiene derecho contra todo gobierno de la tierra", y que ningún gobierno justo debería negarla o dejarla fundada en meras inferencias.</p>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-center mt-6">
+                    <div class="flex flex-col items-center p-3 flow-box rounded-lg">
+                        <div class="icon">🕊️</div>
+                        <p class="mt-2 font-semibold">Libertad de Religión</p>
+                    </div>
+                    <div class="flex flex-col items-center p-3 flow-box rounded-lg">
+                        <div class="icon">📰</div>
+                        <p class="mt-2 font-semibold">Libertad de Prensa</p>
+                    </div>
+                    <div class="flex flex-col items-center p-3 flow-box rounded-lg">
+                        <div class="icon">🛡️</div>
+                        <p class="mt-2 font-semibold">Protección contra Ejércitos Permanentes</p>
+                    </div>
+                    <div class="flex flex-col items-center p-3 flow-box rounded-lg">
+                        <div class="icon">⚖️</div>
+                        <p class="mt-2 font-semibold">Juicios por Jurado</p>
+                    </div>
+                    <div class="flex flex-col items-center p-3 flow-box rounded-lg col-span-2 lg:col-span-1">
+                        <div class="icon">⛓️</div>
+                        <p class="mt-2 font-semibold">Leyes de Habeas Corpus</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="aristocracia" class="md:col-span-2 lg:col-span-4 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">4. La Verdadera Aristocracia: Virtud y Talento, no Riqueza y Cuna</h3>
+                <p class="text-[#E0E1DD] mb-6">Jefferson distingue dos tipos de aristocracia. La "artificial", basada en la riqueza y el nacimiento, es un "ingrediente nocivo" en el gobierno. La "natural", basada en la virtud y el talento, es "el don más precioso de la naturaleza". El objetivo de una buena constitución es crear un sistema que permita al pueblo elegir a esta aristocracia natural para gobernar.</p>
+                <div class="flex flex-col md:flex-row justify-around mt-4">
+                    <div class="w-full md:w-5/12 card p-4 rounded-lg border-2 border-red-500">
+                        <h4 class="text-xl font-bold text-center text-white mb-2">Aristocracia Artificial (Pseudo-Aristoi)</h4>
+                        <ul class="list-disc list-inside space-y-2 text-[#E0E1DD] text-center">
+                            <li>Fundamento: Riqueza y Nacimiento</li>
+                            <li>Características: Privilegio, Corrupción</li>
+                            <li>Resultado: Gobierno Nocivo</li>
+                        </ul>
+                    </div>
+                    <div class="w-full md:w-5/12 mt-6 md:mt-0 card p-4 rounded-lg border-2 border-green-500">
+                        <h4 class="text-xl font-bold text-center text-white mb-2">Aristocracia Natural (Aristoi)</h4>
+                        <ul class="list-disc list-inside space-y-2 text-[#E0E1DD] text-center">
+                            <li>Fundamento: Virtud y Talentos</li>
+                            <li>Características: Prudencia, Mérito</li>
+                            <li>Resultado: Gobierno Eficaz</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="republica-virtuosa" class="md:col-span-2 lg:col-span-4 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">5. Los Pilares de una República Virtuosa</h3>
+                <p class="text-[#E0E1DD] mb-6">Para Jefferson, la libertad no se sostiene sola. Requiere de una ciudadanía educada y un sistema que promueva la virtud. Su ideal se basa en la educación pública para seleccionar a la "aristocracia natural" y en una sociedad agrícola, que considera menos corrupta que las grandes urbes europeas.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div class="flow-box p-4 rounded-lg">
+                        <h4 class="text-lg font-bold">Educación Pública Universal</h4>
+                        <p>Crear un sistema de escuelas gratuitas para "extraer el valor y el genio de todas las condiciones de vida", permitiendo que los mejores lleguen a la universidad a expensas del público.</p>
+                    </div>
+                     <div class="flow-box p-4 rounded-lg">
+                        <h4 class="text-lg font-bold">Gobierno Agrícola</h4>
+                        <p>La virtud del gobierno se mantendrá "mientras siga siendo principalmente agrícola". Jefferson creía que la dependencia de la tierra fomenta la independencia y la moralidad.</p>
+                    </div>
+                </div>
+            </section>
+
+             <section id="constitucion-viva" class="md:col-span-2 lg:col-span-4 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">6. La Constitución Viva: El Progreso de la Mente Humana</h3>
+                <p class="text-[#E0E1DD] mb-6">Jefferson se opone a la idea de que las constituciones son "demasiado santas para ser tocadas". Sostiene que las leyes e instituciones deben avanzar junto con el progreso del conocimiento humano. Cada generación tiene el derecho de adaptar su gobierno a sus propias circunstancias, en lugar de permanecer bajo el régimen de "antepasados bárbaros".</p>
+                 <div class="mt-6 p-6 bg-[#0D1B2A] rounded-lg shadow-inner border-l-4 border-[#778DA9]">
+                    <p class="text-center italic text-xl text-[#E0E1DD]">"Podríamos pedir a un individuo que siguiera llevando la misma chaqueta que le quedaba bien de niño, que a la sociedad civilizada que permanezca siempre bajo el régimen de sus antepasados bárbaros."</p>
+                    <p class="text-right text-base mt-2">- Thomas Jefferson</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="text-center p-8 mt-8 text-sm text-[#415A77]">
+        <p>© 2025 Alan Maillet. Todos los derechos reservados. Hecho con la única intención de facilitarle la vida a los estudiantes.</p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const wrapLabel = (label) => {
+            if (label.length <= 16) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > 16) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        };
+        
+        const representationCanvas = document.getElementById('representationChart');
+        if (representationCanvas) {
+            new Chart(representationCanvas.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Condado de Warwick', 'Condado de Loudon'],
+                    datasets: [{
+                        label: 'Combatientes',
+                        data: [100, 1746],
+                        backgroundColor: ['#778DA9', '#415A77'],
+                        borderColor: '#E0E1DD',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Representantes',
+                        data: [2, 2],
+                        backgroundColor: ['#E0E1DD', '#E0E1DD'],
+                        type: 'line',
+                        yAxisID: 'y1',
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Representación vs. Población (Virginia)', color: '#E0E1DD', font: { size: 16 } },
+                        legend: { position: 'bottom', labels: { color: '#E0E1DD' } },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    },
+                    scales: {
+                        y: { type: 'logarithmic', position: 'left', grid: { color: 'rgba(120, 141, 169, 0.3)' }, ticks: { color: '#E0E1DD' } },
+                        y1: { type: 'linear', display: true, position: 'right', grid: { drawOnChartArea: false, }, ticks: { color: '#E0E1DD', stepSize: 1 } },
+                        x: { ticks: { color: '#E0E1DD' } }
+                    }
+                }
+            });
+        }
+    });
+    </script>
+</body>
+</html>
