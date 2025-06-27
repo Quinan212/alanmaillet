@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía del Tratado Político de Spinoza</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0D1B2A;
+            color: #E0E1DD;
+        }
+        .card {
+            background-color: #1B263B;
+            border: 1px solid #415A77;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 45vh;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+                max-height: 50vh;
+            }
+        }
+        .kpi-number {
+            font-size: 3.5rem;
+            line-height: 1;
+            font-weight: 700;
+            color: #778DA9;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #778DA9;
+            line-height: 1;
+        }
+        .flow-box {
+            background-color: #415A77;
+            color: #E0E1DD;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="text-center py-12 px-4">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">La Anatomía del Poder</h1>
+        <h2 class="text-xl md:text-2xl text-[#E0E1DD]">Una Infografía del Tratado Político de Spinoza</h2>
+    </header>
+
+    <main class="container mx-auto px-4 pb-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <section id="naturaleza" class="md:col-span-2 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">1. Del Estado de Naturaleza al Pacto Social</h3>
+                <p class="text-[#E0E1DD] mb-6">Spinoza parte de un "estado natural" donde el derecho de un individuo es idéntico a su poder. Esta condición, dominada por el apetito y el miedo, lleva al conflicto. La solución racional es la unión: los hombres ceden su poder individual a una entidad colectiva—el Estado—para ganar seguridad y la posibilidad de vivir en paz.</p>
+                <div class="flex flex-col md:flex-row items-stretch justify-center space-y-4 md:space-y-0 md:space-x-4 text-center">
+                    <div class="flow-box p-4 rounded-lg shadow-md w-full md:w-1/4 flex flex-col justify-center">
+                        <h4 class="font-bold">Derecho = Poder</h4>
+                        <p class="text-sm">El individuo es guiado por el deseo.</p>
+                    </div>
+                    <div class="flow-arrow flex items-center justify-center">&rarr;</div>
+                    <div class="flow-box p-4 rounded-lg shadow-md w-full md:w-1/4 flex flex-col justify-center">
+                        <h4 class="font-bold">Miedo y Conflicto</h4>
+                        <p class="text-sm">La enemistad es natural y constante.</p>
+                    </div>
+                    <div class="flow-arrow flex items-center justify-center">&rarr;</div>
+                    <div class="flow-box p-4 rounded-lg shadow-md w-full md:w-1/4 flex flex-col justify-center">
+                        <h4 class="font-bold">Pacto por Utilidad</h4>
+                        <p class="text-sm">La unión de fuerzas por el bien común.</p>
+                    </div>
+                    <div class="flow-arrow flex items-center justify-center">&rarr;</div>
+                    <div class="flow-box p-4 rounded-lg shadow-md w-full md:w-1/4 flex flex-col justify-center">
+                        <h4 class="font-bold">Nace el Estado</h4>
+                        <p class="text-sm">El poder de la multitud se hace ley.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="afectos" class="md:col-span-2 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">2. Los Afectos en la Arena Política</h3>
+                <p class="text-[#E0E1DD] mb-6">Un Estado realista no ignora las pasiones humanas, sino que las utiliza. Spinoza identifica afectos como la ambición, la envidia o la indignación como fuerzas políticas fundamentales. Un gobierno sabio canaliza estos afectos para que, incluso sin quererlo, los ciudadanos contribuyan al bien común. La indignación de la multitud, por ejemplo, es el mayor freno a la tiranía.</p>
+                <div class="chart-container" style="height: 400px; max-height: 50vh;">
+                    <canvas id="affectsChart"></canvas>
+                </div>
+            </section>
+
+             <section id="gobierno" class="md:col-span-2 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">3. Formas de Gobierno: Monarquía vs. Aristocracia</h3>
+                <p class="text-[#E0E1DD] mb-6">Spinoza analiza las formas de gobierno no como ideales, sino como estructuras prácticas. Compara la monarquía, donde el poder reside en uno, con la aristocracia, donde gobiernan "los mejores" (elegidos). Su análisis concluye que una aristocracia amplia es más estable y se aproxima más a un poder absoluto y racional que la monarquía.</p>
+                <div class="chart-container">
+                    <canvas id="governmentFormsChart"></canvas>
+                </div>
+            </section>
+
+            <section id="monarquia" class="card rounded-xl shadow-lg p-6 flex flex-col justify-between">
+                <h3 class="text-2xl font-bold text-white mb-4">4. Monarquía Constitucional</h3>
+                <p class="text-[#E0E1DD] mb-4">Para Spinoza, un rey no puede gobernar solo. Su poder debe ser limitado por un gran Consejo Real, que actúa como los "sentidos del alma" del rey. Este consejo garantiza que las decisiones se tomen con prudencia y por el bien común.</p>
+                <div class="space-y-6 mt-4">
+                    <div class="text-center py-4">
+                        <div class="kpi-number">3000+</div>
+                        <div class="text-xl font-semibold text-[#E0E1DD]">Consejeros Reales</div>
+                        <p class="text-sm text-[#778DA9]">Representando a todas las familias para asegurar un poder equilibrado.</p>
+                    </div>
+                     <div class="text-center py-4">
+                        <div class="kpi-number">50</div>
+                        <div class="text-xl font-semibold text-[#E0E1DD]">Años de Edad Mínima</div>
+                        <p class="text-sm text-[#778DA9]">Para ser consejero, primando la experiencia sobre la ambición.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="aristocracia" class="card rounded-xl shadow-lg p-6 flex flex-col justify-between">
+                <h3 class="text-2xl font-bold text-white mb-4">5. Aristocracia: El Poder Organizado</h3>
+                <p class="text-[#E0E1DD] mb-6">Este es el modelo preferido por Spinoza. El poder reside en un vasto Consejo Supremo de patricios elegidos. Para evitar la tiranía, propone controles como un número elevado de gobernantes y la existencia de "Síndicos" como guardianes de la ley.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center">
+                    <div>
+                        <h4 class="text-lg font-bold">Consejo Supremo</h4>
+                        <div class="kpi-number">5,000</div>
+                        <p class="text-sm text-[#778DA9]">Patricios aseguran una base de poder amplia y difícil de corromper.</p>
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <h4 class="text-lg font-bold">Proporción Ideal</h4>
+                        <div class="chart-container" style="height: 150px; max-height: 150px;">
+                            <canvas id="patricianRatioChart"></canvas>
+                        </div>
+                        <p class="text-sm mt-2 text-[#778DA9]">1 patricio por cada 50 ciudadanos para mantener la estabilidad.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="herencia" class="card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">6. Crítica a la Herencia del Poder</h3>
+                <p class="text-[#E0E1DD] mb-6">Spinoza rechaza la sucesión hereditaria como una ficción irracional. El poder de un rey no es una propiedad personal que se pueda legar. Al morir el monarca, el poder revierte naturalmente a la multitud, que tiene el derecho de elegir un nuevo gobernante.</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr>
+                                <th class="p-3 border-b-2 border-[#415A77] font-bold text-white">Modelo de Sucesión</th>
+                                <th class="p-3 border-b-2 border-[#415A77] font-bold text-white">Fundamento</th>
+                                <th class="p-3 border-b-2 border-[#415A77] font-bold text-white">Resultado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-[#1B263B]">
+                                <td class="p-3 border-b border-[#415A77]">Monarquía Tradicional</td>
+                                <td class="p-3 border-b border-[#415A77]">Derecho de sangre. El poder es patrimonio.</td>
+                                <td class="p-3 border-b border-[#415A77]">Tiranía, estancamiento.</td>
+                            </tr>
+                            <tr class="bg-[#1B263B]">
+                                <td class="p-3 border-b-0">Estado según Spinoza</td>
+                                <td class="p-3 border-b-0">El poder reside en la multitud.</td>
+                                <td class="p-3 border-b-0">Renovación, estabilidad.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="sindicos" class="card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">7. Los "Síndicos": Guardianes de la Constitución</h3>
+                <p class="text-[#E0E1DD] mb-6">En su modelo de aristocracia, Spinoza introduce a los Síndicos: un consejo de veteranos (mayores de 60) con poder vitalicio. Su única función es ser el guardián de las leyes fundamentales, con autoridad para juzgar y destituir a cualquier otro funcionario, incluidos senadores.</p>
+                <div class="mt-4 text-center">
+                    <div class="flow-box p-3 rounded-lg shadow-md mb-2">
+                        <h4 class="font-bold">CONSEJO SUPREMO (Patricios)</h4>
+                        <p class="text-sm">Crea las leyes y elige funcionarios</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 my-2">
+                        <div class="flow-arrow text-right pr-4">&darr;</div>
+                        <div class="flow-arrow text-left pl-4">&darr;</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flow-box p-3 rounded-lg shadow-md">
+                            <h4 class="font-bold">Senado</h4>
+                            <p class="text-sm">Poder Ejecutivo</p>
+                        </div>
+                        <div class="flow-box p-3 rounded-lg shadow-md">
+                            <h4 class="font-bold">Tribunal de Justicia</h4>
+                            <p class="text-sm">Poder Judicial</p>
+                        </div>
+                    </div>
+                     <div class="flex justify-center my-2">
+                       <div class="flow-arrow -rotate-90">&larr;</div>
+                     </div>
+                     <div class="flow-box p-3 rounded-lg shadow-md border-2 border-[#E0E1DD]">
+                        <h4 class="font-bold">SÍNDICOS</h4>
+                        <p class="text-sm">Vigilan y juzgan a todos los poderes</p>
+                    </div>
+                </div>
+            </section>
+
+             <section id="ejercito" class="md:col-span-2 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">8. El Ejército Ciudadano: Escudo de la Libertad</h3>
+                <p class="text-[#E0E1DD] mb-6">Spinoza desconfía de los ejércitos mercenarios, cuyo negocio es la guerra. Propone un ejército compuesto exclusivamente por ciudadanos. Cuando el poder armado reside en el pueblo, los intereses del ejército y del Estado se alinean, haciendo al Estado más seguro y a sus ciudadanos verdaderamente libres.</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr>
+                                <th class="p-2 border-b-2 border-[#415A77]">Característica</th>
+                                <th class="p-2 border-b-2 border-[#415A77] text-center">Ejército Ciudadano (Ideal de Spinoza)</th>
+                                <th class="p-2 border-b-2 border-[#415A77] text-center">Ejército Mercenario (Peligro)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-[#1B263B]">
+                                <td class="p-2 border-b border-[#415A77] font-semibold">Composición</td>
+                                <td class="p-2 border-b border-[#415A77]">Todos los ciudadanos, sin excepción.</td>
+                                <td class="p-2 border-b border-[#415A77]">Soldados profesionales, a menudo extranjeros.</td>
+                            </tr>
+                            <tr class="bg-[#1B263B]">
+                                <td class="p-2 border-b border-[#415A77] font-semibold">Motivación</td>
+                                <td class="p-2 border-b border-[#415A77]">Defender la patria, la libertad y los hogares.</td>
+                                <td class="p-2 border-b border-[#415A77]">Salario y botín. Su negocio es la guerra.</td>
+                            </tr>
+                            <tr class="bg-[#1B263B]">
+                                <td class="p-2 border-b-0 font-semibold">Resultado</td>
+                                <td class="p-2 border-b-0">Paz y seguridad duraderas. La libertad se mantiene.</td>
+                                <td class="p-2 border-b-0">Guerra perpetua y riesgo de tiranía.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <section id="religion" class="md:col-span-2 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">9. Religión y Estado: Separando lo Público y lo Privado</h3>
+                <p class="text-[#E0E1DD] mb-6">Para mantener la paz, el Estado debe controlar las manifestaciones externas de la religión (el culto), mientras garantiza la libertad de pensamiento y creencia interna. Spinoza propone una religión de Estado "simple y universal" para la clase gobernante, con el fin de asegurar la unidad, pero permite la diversidad de cultos en la plebe, siempre que no sean sediciosos.</p>
+                <div class="chart-container">
+                    <canvas id="religionPolicyChart"></canvas>
+                </div>
+            </section>
+
+            <section id="ley-pecado" class="md:col-span-2 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">10. La Naturaleza de la Ley y el Pecado</h3>
+                <p class="text-[#E0E1DD] mb-6">Spinoza redefine radicalmente los conceptos de justicia y pecado. Sostiene que estos no existen en el estado de naturaleza. Solo dentro del Estado, a través de un "derecho común", surgen las nociones de lo justo y lo injusto. El pecado no es una falta moral, sino la transgresión de la ley civil.</p>
+                <div class="flex flex-col md:flex-row justify-around mt-4">
+                    <div class="w-full md:w-5/12 card p-4 rounded-lg border-2 border-[#778DA9]">
+                        <h4 class="text-xl font-bold text-center text-white mb-2">Estado de Naturaleza</h4>
+                        <ul class="list-disc list-inside space-y-2 text-[#E0E1DD]">
+                            <li><span class="font-semibold">Derecho:</span> Determinado por el poder y el apetito individual.</li>
+                            <li><span class="font-semibold">Ley:</span> Inexistente.</li>
+                            <li><span class="font-semibold">Pecado:</span> Inconcebible.</li>
+                        </ul>
+                    </div>
+                    <div class="w-full md:w-5/12 mt-6 md:mt-0 card p-4 rounded-lg border-2 border-[#778DA9]">
+                        <h4 class="text-xl font-bold text-center text-white mb-2">Estado Político (Civitas)</h4>
+                         <ul class="list-disc list-inside space-y-2 text-[#E0E1DD]">
+                            <li><span class="font-semibold">Derecho:</span> Definido por el "derecho común".</li>
+                            <li><span class="font-semibold">Ley:</span> Preceptos para el bien común.</li>
+                            <li><span class="font-semibold">Pecado:</span> Acción contraria a la ley civil.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="economia" class="md:col-span-2 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">11. Estructura Económica y Estabilidad Política</h3>
+                <p class="text-[#E0E1DD] mb-6">La organización económica es clave para la paz. Spinoza diseña sistemas donde el interés personal de los gobernantes se alinee con el del Estado. En la aristocracia, vincular los ingresos de los senadores al comercio los incentiva a mantener la paz, que es esencial para la prosperidad comercial.</p>
+                 <div class="chart-container">
+                    <canvas id="economicStructureChart"></canvas>
+                </div>
+            </section>
+            
+            <section id="relaciones" class="card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">12. Relaciones Internacionales</h3>
+                <p class="text-[#E0E1DD] mb-6">Los Estados se relacionan como individuos en el estado natural: son enemigos por naturaleza, y su derecho está limitado por su poder. Los tratados son frágiles, respetados solo por interés o miedo.</p>
+                <div class="chart-container">
+                    <canvas id="internationalRelationsChart"></canvas>
+                </div>
+            </section>
+            
+            <section id="libertad" class="card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">13. Libertad: Fruto de la Razón</h3>
+                <p class="text-[#E0E1DD] mb-6">La verdadera libertad solo es posible en un Estado seguro. No es la licencia para seguir cualquier apetito, sino la capacidad de vivir según la razón. El Estado, al eliminar el miedo, permite que la razón florezca.</p>
+                 <div class="chart-container">
+                    <canvas id="libertyCompositionChart"></canvas>
+                </div>
+            </section>
+            
+            <section id="democracia" class="md:col-span-2 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">14. Democracia: El Ideal Inacabado</h3>
+                <p class="text-[#E0E1DD] mb-6">Spinoza considera la democracia como el régimen "totalmente absoluto" y el más acorde con la libertad natural, aunque no pudo completar su desarrollo. En su modelo, todos los ciudadanos "autónomos que viven honradamente" tienen derecho a votar y a ocupar cargos. Este concepto, aunque avanzado, refleja los prejuicios de su tiempo al excluir a ciertos grupos.</p>
+                <div class="chart-container" style="height:300px; max-height:300px;">
+                    <canvas id="democracyDonutChart"></canvas>
+                </div>
+            </section>
+
+             <section id="finalidad" class="md:col-span-2 card rounded-xl shadow-lg p-6">
+                <h3 class="text-2xl font-bold text-white mb-4">15. El Fin Último del Estado</h3>
+                <p class="text-[#E0E1DD] mb-6">El objetivo del Estado no es dominar, sino liberar a cada uno del temor. La paz no es la mera ausencia de guerra, sino una "virtud que brota de la fortaleza del alma". Un Estado bien organizado permite a sus ciudadanos vivir según la razón, alcanzando así la verdadera libertad.</p>
+                <div class="mt-6 p-6 flow-box rounded-lg shadow-inner">
+                    <p class="text-center italic text-xl">"El fin del Estado no es otro que la paz y la seguridad de la vida. Aquel Estado es, por tanto, el mejor, en el que los hombres viven en concordia y en el que los derechos comunes se mantienen ilesos."</p>
+                    <p class="text-right text-sm mt-2">- Tratado Político, Cap. V, §2</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="text-center p-8 mt-8 text-sm text-[#778DA9]">
+        <p>© 2025 Alan Maillet. Todos los derechos reservados. Hecho con la única intención de facilitarle la vida a los estudiantes.</p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const wrapLabel = (label) => {
+            if (label.length <= 16) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > 16) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        };
+
+        const governmentFormsCanvas = document.getElementById('governmentFormsChart');
+        if (governmentFormsCanvas) {
+            new Chart(governmentFormsCanvas.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: [wrapLabel('Estabilidad'), wrapLabel('Proximidad a lo Absoluto'), wrapLabel('Adecuación para la Libertad')],
+                    datasets: [{
+                        label: 'Monarquía',
+                        data: [5, 4, 3],
+                        backgroundColor: '#778DA9',
+                    }, {
+                        label: 'Aristocracia',
+                        data: [8, 9, 7],
+                        backgroundColor: '#415A77',
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: { beginAtZero: true, max: 10, grid: { color: 'rgba(120, 141, 169, 0.2)' }, ticks: { color: '#E0E1DD' } },
+                        y: { grid: { color: 'rgba(120, 141, 169, 0.2)' }, ticks: { color: '#E0E1DD', autoSkip: false } }
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#E0E1DD' } },
+                        title: { display: true, text: 'Evaluación de las Formas de Gobierno (Escala 1-10)', color: '#E0E1DD', font: { size: 16 } },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    }
+                }
+            });
+        }
+
+        const patricianRatioCanvas = document.getElementById('patricianRatioChart');
+        if(patricianRatioCanvas) {
+            new Chart(patricianRatioCanvas.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Patricios', 'Población'],
+                    datasets: [{
+                        data: [1, 50],
+                        backgroundColor: ['#778DA9', '#1B263B'],
+                        borderColor: ['#E0E1DD', '#415A77'],
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'top', labels: { color: '#E0E1DD' } },
+                        title: { display: false },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    }
+                }
+            });
+        }
+        
+        const affectsChartCanvas = document.getElementById('affectsChart');
+        if(affectsChartCanvas) {
+            new Chart(affectsChartCanvas.getContext('2d'), {
+                type: 'bubble',
+                data: {
+                    datasets: [{
+                        label: 'Afectos Desestabilizadores',
+                        data: [{ x: 20, y: 30, r: 25 }, { x: 40, y: 15, r: 18 }, { x: 60, y: 25, r: 22 }],
+                        backgroundColor: 'rgba(224, 225, 221, 0.5)',
+                        borderColor: '#E0E1DD'
+                    }, {
+                        label: 'Afectos Canalizables',
+                        data: [{ x: 80, y: 20, r: 20 }],
+                        backgroundColor: 'rgba(119, 141, 169, 0.5)',
+                        borderColor: '#778DA9'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Poder Político de los Afectos', color: '#E0E1DD', font: { size: 16 } },
+                        legend: { labels: { color: '#E0E1DD' } },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const labels = ['Indignación de la Multitud', 'Soberbia del Gobernante', 'Envidia entre iguales', 'Ambición de Honores'];
+                                    const affectData = [
+                                      {ds: 0, idx: 0, lbl: labels[0]}, {ds: 0, idx: 1, lbl: labels[1]}, {ds: 0, idx: 2, lbl: labels[2]},
+                                      {ds: 1, idx: 0, lbl: labels[3]}
+                                    ];
+                                    const current = affectData.find(d => d.ds === context.datasetIndex && d.idx === context.dataIndex);
+                                    return current ? `${current.lbl}: Poder ${context.raw.r}`: '';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: { display: false, min: 0, max: 50 },
+                        x: { display: false, min: 0, max: 100 }
+                    }
+                }
+            });
+        }
+        
+        const economicStructureCanvas = document.getElementById('economicStructureChart');
+        if (economicStructureCanvas) {
+            new Chart(economicStructureCanvas.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Monarquía Ideal', 'Aristocracia Ideal'],
+                    datasets: [
+                      { label: 'Paz', data: [60, 85], backgroundColor: '#E0E1DD'}, 
+                      { label: 'Guerra', data: [40, 15], backgroundColor: '#415A77' }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Incentivos Económicos hacia la Paz vs. Guerra (%)', color: '#E0E1DD', font: { size: 16 } },
+                        legend: { labels: { color: '#E0E1DD' } },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    },
+                    scales: {
+                        x: { stacked: true, grid: { display: false }, ticks: { color: '#E0E1DD' } },
+                        y: { stacked: true, grid: { color: 'rgba(120, 141, 169, 0.2)' }, ticks: { color: '#E0E1DD' } }
+                    }
+                }
+            });
+        }
+        
+        const internationalRelationsCanvas = document.getElementById('internationalRelationsChart');
+        if (internationalRelationsCanvas) {
+            new Chart(internationalRelationsCanvas.getContext('2d'), {
+                type: 'radar',
+                data: {
+                    labels: [wrapLabel('Autoconservación'), 'Miedo al Daño', wrapLabel('Esperanza de Beneficio'), 'Desconfianza', wrapLabel('Fidelidad a Pactos (Condicional)')],
+                    datasets: [{
+                        label: 'Motivaciones del Estado',
+                        data: [10, 8, 9, 7, 4],
+                        fill: true,
+                        backgroundColor: 'rgba(65, 90, 119, 0.4)',
+                        borderColor: '#778DA9',
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    elements: { line: { borderWidth: 3 } },
+                     scales: {
+                        r: {
+                            angleLines: { color: 'rgba(120, 141, 169, 0.2)' },
+                            grid: { color: 'rgba(120, 141, 169, 0.2)' },
+                            pointLabels: { color: '#E0E1DD', font: {size: 11} },
+                            ticks: {
+                                color: '#0D1B2A',
+                                backdropColor: 'rgba(224, 225, 221, 0.8)',
+                                stepSize: 2
+                            },
+                            min: 0,
+                            max: 10
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    }
+                }
+            });
+        }
+
+        const libertyCompositionCanvas = document.getElementById('libertyCompositionChart');
+        if(libertyCompositionCanvas) {
+            new Chart(libertyCompositionCanvas.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Estado de Naturaleza', 'Estado Político Bien Ordenado'],
+                    datasets: [
+                        { label: 'Miedo e Inseguridad', data: [70, 10], backgroundColor: '#415A77' },
+                        { label: 'Apetito y Pasión', data: [25, 30], backgroundColor: '#778DA9' },
+                        { label: 'Razón y Libertad Verdadera', data: [5, 60], backgroundColor: '#E0E1DD' }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: { display: true, text: 'Composición de la Condición Humana (%)', color: '#E0E1DD', font: {size: 16} },
+                        legend: { labels: { color: '#E0E1DD' } },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    },
+                    scales: {
+                        x: { stacked: true, grid: { display: false }, ticks: { color: '#E0E1DD' } },
+                        y: { stacked: true, grid: { color: 'rgba(120, 141, 169, 0.2)' }, ticks: { color: '#E0E1DD' } }
+                    }
+                }
+            });
+        }
+
+        const religionPolicyCanvas = document.getElementById('religionPolicyChart');
+        if (religionPolicyCanvas) {
+            new Chart(religionPolicyCanvas.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: [wrapLabel('Libertad de Creencia Interna'), wrapLabel('Financiación Pública de Templos'), wrapLabel('Control del Culto Externo')],
+                    datasets: [{
+                        label: 'Religión del Estado (Patricios)',
+                        data: [5, 10, 9],
+                        backgroundColor: '#415A77',
+                    }, {
+                        label: 'Otras Religiones (Plebe)',
+                        data: [10, 1, 6],
+                        backgroundColor: '#778DA9',
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    scales: {
+                         x: { grid: { color: 'rgba(120, 141, 169, 0.2)' }, ticks: { color: '#E0E1DD', autoSkip: false } },
+                        y: { beginAtZero: true, max: 10, grid: { color: 'rgba(120, 141, 169, 0.2)' }, ticks: { color: '#E0E1DD' } }
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#E0E1DD' } },
+                        title: { display: true, text: 'Políticas Religiosas del Estado (Escala 1-10)', color: '#E0E1DD', font: { size: 16 } },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    }
+                }
+            });
+        }
+
+        const democracyDonutCanvas = document.getElementById('democracyDonutChart');
+        if(democracyDonutCanvas) {
+             new Chart(democracyDonutCanvas.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Ciudadanos con Pleno Derecho', 'Mujeres y Siervos (Excluidos)', 'Extranjeros', 'Criminales o Infames'],
+                    datasets: [{
+                        data: [65, 25, 5, 5],
+                        backgroundColor: ['#E0E1DD', '#778DA9', '#415A77', '#1B263B'],
+                        borderColor: '#0D1B2A',
+                        borderWidth: 2,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'right', labels: { color: '#E0E1DD' } },
+                        title: { display: true, text: 'Composición del Electorado en la Democracia Ideal', color: '#E0E1DD', font: { size: 16 } },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    }
+                }
+            });
+        }
+    });
+    </script>
+</body>
+</html>
